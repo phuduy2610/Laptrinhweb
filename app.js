@@ -14,6 +14,24 @@ const loginRouter = require('./routes/login');
 
 const app = express();
 
+
+//custom handle bars ( so shet )
+hbs.registerHelper( "when",function(operand_1, operator, operand_2, options) {
+  var operators = {
+   '==': function(l,r) { return l == r; },
+   '!=': function(l,r) { return l != r; },
+   '>': function(l,r) { return Number(l) > Number(r); },
+   '<': function(l,r) { return Number(l) < Number(r); },
+   '||': function(l,r) { return l || r; },
+   '&&': function(l,r) { return l && r; },
+   '%': function(l,r) { return (l % r) === 0; }
+  }
+  , result = operators[operator](operand_1,operand_2);
+
+  if (result) return options.fn(this);
+  else  return options.inverse(this);
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
