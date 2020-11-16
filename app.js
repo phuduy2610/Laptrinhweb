@@ -9,6 +9,7 @@ const hbs = require('hbs');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
+const shopRouter = require('./routes/shop');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register',registerRouter);
+app.use('/shop',shopRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
