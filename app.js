@@ -9,11 +9,8 @@ const hbs = require('hbs');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
-<<<<<<< HEAD
 const shopRouter = require('./routes/shop');
-=======
 const loginRouter = require('./routes/login');
->>>>>>> daa0222b5076ba8bda09e8ca478669e0cbe4b97f
 
 const app = express();
 
@@ -32,11 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register',registerRouter);
-<<<<<<< HEAD
 app.use('/shop',shopRouter);
-=======
 app.use('/login',loginRouter);
->>>>>>> daa0222b5076ba8bda09e8ca478669e0cbe4b97f
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
