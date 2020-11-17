@@ -1,0 +1,98 @@
+<!-- Include the Etalage files -->
+					<link rel="stylesheet" href="stylesheets/etalage.css">
+					<script src="javascripts/jquery.etalage.min.js"></script>
+				<!-- Include the Etalage files -->
+                    <script src="javascripts/thumbnail.js"></script>
+
+<div class="main">
+    <div class="shop_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 single_left">
+                    <div class="single_image">
+                        <ul id="etalage">
+                            <li>
+                                {{#each first}}
+                                <a href="optionallink.html">
+                                    <img class="etalage_thumb_image" src="{{cover}}" />
+                                    <img class="etalage_source_image" src="{{cover}}" />
+                                </a>
+                                {{/each}}
+                            </li>
+                            {{#each middle}}
+                            <li>
+                                <img class="etalage_thumb_image" src="{{cover}}" />
+                                <img class="etalage_source_image" src="{{cover}}" />
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <!-- end product_slider -->
+                    <div class="single_right">
+                        <h3>hendrerit in vulputate velit </h3>
+                        <p class="m_10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
+                            veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
+                            commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse</p>
+                        <div class="btn_form">
+                            <form>
+                                <input type="submit" value="buy now" title="">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="box-info-product">
+                        <p class="price2">$130.25</p>
+                        <ul class="prosuct-qty">
+                            <span>Quantity:</span>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                            </select>
+                        </ul>
+                        <button type="submit" name="Submit" class="exclusive">
+                            <span>Add to cart</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="desc">
+                <h4>Description</h4>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+                    laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+                    ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure
+                    dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla
+                    facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+                    delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend
+                    option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent
+                    claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes
+                    demonstraverunt lectores</p>
+            </div>
+            <div class="row">
+                <h4 class="m_11">Related Products in the same Category</h4>
+                {{#each samegenre}}
+                <div class="col-md-4 product1">
+                    <img src="{{cover}}" class="img-responsive" alt="" />
+                    <div class="shop_desc"><a href="single.html">
+                        </a>
+                        <h3><a href="single.html"></a><a href="#">{{title}}</a></h3>
+                        <span class="reducedfrom">{{basePrice}}</span>
+                        <span class="actual">$12.00</span><br>
+                        <ul class="buttons">
+                            <li class="cart"><a href="#">Add To Cart</a></li>
+                            <li class="shop_btn"><a href="#">Read More</a></li>
+                            <div class="clear"> </div>
+                        </ul>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
