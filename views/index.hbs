@@ -4,9 +4,10 @@
 	<!-- start slider -->
 	<div id="fwslider">
 		<div class="slider_container">
+			 {{#each slider}}
 			<div class="slide">
 				<!-- Slide image -->
-				<img src="images/slider1.jpg" class="img-responsive" alt="" />
+				<img src="{{cover}}" class="img-responsive" alt="" />
 				<!-- /Slide image -->
 				<!-- Texts container -->
 				<div class="slide_content">
@@ -17,17 +18,7 @@
 				</div>
 				<!-- /Texts container -->
 			</div>
-			<!-- /Duplicate to create more slides -->
-			<div class="slide">
-				<img src="images/slider2.jpg" class="img-responsive" alt="" />
-				<div class="slide_content">
-					{{!-- <div class="slide_content_wrap">
-							<h1 class="title">Play<br>Everything</h1> 
-							<div class="button"><a href="#">See Details</a></div>
-						</div> --}}
-				</div>
-			</div>
-			<!--/slide -->
+			{{/each}}
 		</div>
 		<div class="timers"></div>
 		<div class="slidePrev"><span></span></div>
@@ -40,11 +31,9 @@
 		<h2 id="customText">Top sellers</h2>
 		<p id="customText">Our best products</p>
 		<ul id="flexiselDemo3">
-			<li><img src="images/game1.jpg" /></li>
-			<li><img src="images/game2.jpg" /></li>
-			<li><img src="images/game3.jpg" /></li>
-			<li><img src="images/game4.jpg" /></li>
-			<li><img src="images/game5.jpg" /></li>
+			{{#each flexisel}}
+			<li><img src="{{cover}}" /></li>
+			{{/each}}
 		</ul>
 		<h3 id="customText">best bang for you buck</h3>
 	</div>
@@ -66,54 +55,20 @@
 	<div class="container">
 		<h3 class="m_3">Genres</h3>
 		<div class="row">
+			{{#each genres}}
 			<div class="col-md-3 top_box">
 				<div class="view view-ninth"><a href="single.html">
-						<img src="images/pic1.jpg" class="img-responsive" alt="" />
+						<img src="{{cover}}" class="img-responsive" alt="" />
 						<div class="mask mask-1"> </div>
 						<div class="mask mask-2"> </div>
 						<div class="content">
-							<h2>Strategy</h2>
-							<p>Test your mind against the hardest opponents.</p>
+							<h2>{{genre}}</h2>
+							<p>{{des}}</p>
 						</div>
 					</a> 
 				</div>
 			</div>
-			<div class="col-md-3 top_box">
-				<div class="view view-ninth"><a href="single.html">
-						<img src="images/pic2.jpg" class="img-responsive" alt="" />
-						<div class="mask mask-1"> </div>
-						<div class="mask mask-2"> </div>
-						<div class="content">
-							<h2>RPG</h2>
-							<p>Become the skillest and strongest warrior.</p>
-						</div>
-					</a> 
-				</div>
-			</div>
-			<div class="col-md-3 top_box">
-				<div class="view view-ninth"><a href="single.html">
-						<img src="images/pic3.jpg" class="img-responsive" alt="" />
-						<div class="mask mask-1"> </div>
-						<div class="mask mask-2"> </div>
-						<div class="content">
-							<h2>Fighting</h2>
-							<p>Master the art of fighting.</p>
-						</div>
-					</a> 
-				</div>
-			</div>
-			<div class="col-md-3 top_box1">
-				<div class="view view-ninth"><a href="single.html">
-						<img src="images/pic4.jpg" class="img-responsive" alt="" />
-						<div class="mask mask-1"> </div>
-						<div class="mask mask-2"> </div>
-						<div class="content">
-							<h2>Shooter</h2>
-							<p>Train to become a perfect soilder.</p>
-						</div>
-					</a>
-				</div>
-			</div>
+			{{/each}}
 		</div>
 	</div>
 </div>
