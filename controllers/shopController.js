@@ -4,5 +4,5 @@ exports.index = (req, res, next) => {
     // Get from model
     const games = shopModel.list();
     // Pass data to view to display
-    res.render('shop',{games});
+    res.render('shop/shop',{games});
 };
