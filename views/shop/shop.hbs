@@ -4,7 +4,7 @@
             <div class="row shop_box-top">
                 {{#each games}}
                 {{#when @index '<' 4}}
-                <div class="col-md-3 shop_box"><a href="/single">
+                <div class="col-md-3 shop_box"><a href="shop/{{id}}">
                         <img src="{{cover}}" class="img-responsive" alt="" />
                         <span class="new-box">
                             <span class="new-label">New</span>
@@ -29,7 +29,7 @@
             <div class="row">
                 {{#each games}}
                 {{#when @index '>' 3}}
-                <div class="col-md-3 shop_box"><a href="/single">
+                <div class="col-md-3 shop_box"><a href="shop/{{id}}">
                         <img src="{{cover}}" class="img-responsive" alt="" />
                         <span class="new-box">
                             <span class="new-label">New</span>

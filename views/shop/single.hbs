@@ -1,8 +1,8 @@
 <!-- Include the Etalage files -->
-					<link rel="stylesheet" href="stylesheets/etalage.css">
-					<script src="javascripts/jquery.etalage.min.js"></script>
+					<link rel="stylesheet" href="../stylesheets/etalage.css">
+					<script src="../javascripts/jquery.etalage.min.js"></script>
 				<!-- Include the Etalage files -->
-                    <script src="javascripts/thumbnail.js"></script>
+                    <script src="../javascripts/thumbnail.js"></script>
 
 <div class="main">
     <div class="shop_top">
@@ -12,24 +12,20 @@
                     <div class="single_image">
                         <ul id="etalage">
                             <li>
-                                {{#each first}}
                                 <a href="optionallink.html">
-                                    <img class="etalage_thumb_image" src="{{cover}}" />
-                                    <img class="etalage_source_image" src="{{cover}}" />
+                                    <img class="etalage_thumb_image" src="{{game.cover}}" />
+                                    <img class="etalage_source_image" src="{{game.cover}}" />
                                 </a>
-                                {{/each}}
                             </li>
-                            {{#each middle}}
-                            <li>
-                                <img class="etalage_thumb_image" src="{{cover}}" />
-                                <img class="etalage_source_image" src="{{cover}}" />
-                            </li>
-                            {{/each}}
+                            {{!-- <li>
+                                <img class="etalage_thumb_image" src="{{game.cover}}" />
+                                <img class="etalage_source_image" src="{{game.cover}}" />
+                            </li> --}}
                         </ul>
                     </div>
                     <!-- end product_slider -->
                     <div class="single_right">
-                        <h3>Title</h3>
+                        <h3>{{game.title}}</h3>
                         <p class="m_10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
                             euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
                             veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
@@ -44,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="box-info-product">
-                        <p class="price2">$130.25</p>
+                        <p class="price2">{{game.basePrice}}</p>
                         <ul class="prosuct-qty">
                             <span>Quantity:</span>
                             <select>
@@ -76,7 +72,7 @@
             </div>
             <div class="row">
                 <h4 class="m_11">Related Products in the same Category</h4>
-                {{#each samegenre}}
+                {{#each game}}
                 <div class="col-md-4 product1">
                     <img src="{{cover}}" class="img-responsive" alt="" />
                     <div class="shop_desc"><a href="single.html">

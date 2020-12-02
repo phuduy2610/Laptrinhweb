@@ -10,8 +10,7 @@ async function connectDb(){
     try{
         //Kết nối với database
         await client.connect();
-        client.db("GameStoreDatabase");
-        
+        database = await client.db("GameStoreDatabase");        
         //Gọi hàm tương tác với database
         await listDatabases(client);
 

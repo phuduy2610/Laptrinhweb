@@ -1,5 +1,5 @@
-const {db} = require('../dal/db');
-const {ObjectID} = require('mongodb');
+const {db} = require('../db/db');
+const {ObjectId} = require('mongodb');
 
 //Khai báo biến collection
 
@@ -17,6 +17,13 @@ exports.list = async () => {
 exports.getonebytitle = async (gametitle) => {
     const gamecollection = db().collection('Our games');
     const game = await gamecollection.findOne({title: gametitle})
+    return game;
+}
+
+//Tìm game bằng id
+exports.getonebyid = async (gameid) => {
+    const gamecollection = db().collection('Our games');
+    const game = await gamecollection.findOne({id: gameid});
     return game;
 }
 
