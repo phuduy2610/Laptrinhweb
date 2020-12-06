@@ -27,6 +27,12 @@ exports.getonebyid = async (gameid) => {
     return game;
 }
 
+exports.getHighestId = async()=>{
+    const gamecollection = db().collection('Our games');
+    const game = await gamecollection.find({}).sort({id:-1}).limit(1).toArray();
+    return game;
+}
+
 //Tìm nhiều game có cùng genre
 exports.getsamegenre = async(gamegenre) =>{
     const gamecollection = db().collection('Our games');
@@ -57,3 +63,8 @@ exports.updateGameByName = async(nameOfGame, updatedInfo) =>{
     console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
 
+exports.getbypage = async(page_number, item_per_page )=>{
+    const gamecollection = db().collection('Our games');
+    const games = await gamecollection.find({}).skip((page_number - 1)*item_per_page).limit(item_per_page).toArray();
+    return games;
+}
