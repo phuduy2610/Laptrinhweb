@@ -1,11 +1,16 @@
 const GameModel = require('../models/GameModel');
 
 exports.index = async (req, res, next) => {
-    // Get books from model
-    const games = await GameModel.list();
-    console.log('games', games);
-    // Pass data to view to display list of books
-    res.render('shop/shop', {games});
+    const limit = 8 ;
+    const current_page = parseInt(req.query.page) || 1;
+    const games = await GameModel.getbypage(current_page,limit);
+    const GameCount = await GameModel.getGameCount();
+    //Page
+    const pagination = {
+        page : current_page ,
+        pageCount : Math.ceil(parseInt(GameCount) / limit)
+    }
+    res.render('shop/shop', {games,pagination});
 };
 
 exports.details = async (req, res, next) => {

@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
+var paginate = require('handlebars-paginate');
 
 
 const indexRouter = require('./routes/index');
@@ -15,7 +16,7 @@ const shopRouter = require('./routes/shop');
 const app = express();
 
 
-//custom handle bars ( so shet )
+//custom handle bars 
 hbs.registerHelper( "when",function(operand_1, operator, operand_2, options) {
   var operators = {
    '==': function(l,r) { return l == r; },
@@ -33,6 +34,7 @@ hbs.registerHelper( "when",function(operand_1, operator, operand_2, options) {
 });
 
 //middleware for searching game like "%...%"
+hbs.registerHelper("paginate", paginate);
 
 
 // view engine setup
