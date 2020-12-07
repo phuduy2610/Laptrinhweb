@@ -63,8 +63,15 @@ exports.updateGameByName = async(nameOfGame, updatedInfo) =>{
     console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
 
+//Lấy game theo trang
 exports.getbypage = async(page_number, item_per_page )=>{
     const gamecollection = db().collection('Our games');
     const games = await gamecollection.find({}).skip((page_number - 1)*item_per_page).limit(item_per_page).toArray();
     return games;
+}
+
+//Lấy số lượng game
+exports.getGameCount = async()=>{
+    const gameCount = await db().collection('Our games').countDocuments();
+    return gameCount;
 }

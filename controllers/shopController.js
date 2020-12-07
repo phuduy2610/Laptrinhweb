@@ -4,13 +4,12 @@ exports.index = async (req, res, next) => {
     const limit = 8 ;
     const current_page = parseInt(req.query.page) || 1;
     const games = await GameModel.getbypage(current_page,limit);
-    const Highest_Id = await GameModel.getHighestId();
+    const GameCount = await GameModel.getGameCount();
     //Page
     const pagination = {
         page : current_page ,
-        pageCount : Math.ceil(parseInt(Highest_Id[0].id) / limit)
+        pageCount : Math.ceil(parseInt(GameCount) / limit)
     }
-    console.log(pagination);
     res.render('shop/shop', {games,pagination});
 };
 
