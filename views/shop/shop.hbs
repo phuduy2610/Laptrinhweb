@@ -11,16 +11,15 @@
                                         <header class="card-header"> <a href="#" data-toggle="collapse"
                                                 data-target="#collapse_aside1" data-abc="true" aria-expanded="false"
                                                 class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                                                <h6 class="title">Categories </h6>
+                                                <h6 class="shop-category-title">Categories </h6>
                                             </a> </header>
                                         <div class="filter-content collapse" id="collapse_aside1" style="">
                                             <div class="card-body">
                                                 <ul class="list-menu">
-                                                    <li><a href="#" data-abc="true">Electronics </a></li>
-                                                    <li><a href="#" data-abc="true">Watches </a></li>
-                                                    <li><a href="#" data-abc="true">Laptops </a></li>
-                                                    <li><a href="#" data-abc="true">Clothes </a></li>
-                                                    <li><a href="#" data-abc="true">Accessories </a></li>
+                                                    <li><a href="#" data-abc="true">Strategy </a></li>
+                                                    <li><a href="#" data-abc="true">RPG </a></li>
+                                                    <li><a href="#" data-abc="true">Fighting </a></li>
+                                                    <li><a href="#" data-abc="true">Shooter </a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -29,7 +28,7 @@
                                         <header class="card-header"> <a href="#" data-toggle="collapse"
                                                 data-target="#collapse_aside2" data-abc="true" aria-expanded="false"
                                                 class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                                                <h6 class="title">Price </h6>
+                                                <h6 class="shop-category-title">Price </h6>
                                             </a> </header>
                                         <div class="filter-content collapse" id="collapse_aside2" style="">
                                             <div class="card-body"> <input type="range" class="custom-range" min="0"
@@ -48,28 +47,9 @@
                                     </article>
                                     <article class="filter-group">
                                         <header class="card-header"> <a href="#" data-toggle="collapse"
-                                                data-target="#collapse_aside3" data-abc="true" aria-expanded="false"
-                                                class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                                                <h6 class="title">Size </h6>
-                                            </a> </header>
-                                        <div class="filter-content collapse" id="collapse_aside3" style="">
-                                            <div class="card-body"> <label class="checkbox-btn"> <input type="checkbox">
-                                                    <span class="btn btn-light"> XS </span> </label> <label
-                                                    class="checkbox-btn"> <input type="checkbox"> <span
-                                                        class="btn btn-light"> SM </span> </label> <label
-                                                    class="checkbox-btn"> <input type="checkbox"> <span
-                                                        class="btn btn-light"> LG </span> </label> <label
-                                                    class="checkbox-btn"> <input type="checkbox"> <span
-                                                        class="btn btn-light"> XXL </span> </label> <label
-                                                    class="checkbox-btn"> <input type="checkbox"> <span
-                                                        class="btn btn-light"> XXXL </span> </label> </div>
-                                        </div>
-                                    </article>
-                                    <article class="filter-group">
-                                        <header class="card-header"> <a href="#" data-toggle="collapse"
                                                 data-target="#collapse_aside4" data-abc="true" class="collapsed"
                                                 aria-expanded="false"> <i class="icon-control fa fa-chevron-down"></i>
-                                                <h6 class="title">Rating </h6>
+                                                <h6 class="shop-category-title">Rating </h6>
                                             </a> </header>
                                         <div class="filter-content collapse" id="collapse_aside4" style="">
                                             <div class="card-body"> <label class="custom-control"> <input
@@ -95,7 +75,7 @@
                 <div class="col-8">
                     <div class="row shop_box-top">
                         {{#each games}}
-                        {{#when @index '<' 4}}
+                        {{#when @index '<' 10}}
                         <div class="col-md-3 shop_box"><a href="shop/{{id}}">
                                 <img src="{{cover}}" class="img-responsive" alt="" />
                                 <span class="new-box">
@@ -118,7 +98,7 @@
                         {{/when}}
                         {{/each}}
                     </div>
-                    <div class="row">
+                    {{!-- <div class="row">
                         {{#each games}}
                         {{#when @index '>' 3}}
                         <div class="col-md-3 shop_box"><a href="shop/{{id}}">
@@ -138,7 +118,7 @@
                             </a></div>
                         {{/when}}
                         {{/each}}
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

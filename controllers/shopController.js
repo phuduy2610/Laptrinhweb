@@ -14,3 +14,9 @@ exports.details = async (req, res, next) => {
    console.log('single games',game);
    res.render('shop/single', {game});
 };
+
+exports.search = async(req,res,next)=>{
+  const games = await GameModel.getsamename(req.params.search);
+  console.log('games', games);
+  res.render('shope/shope',{games});  
+};

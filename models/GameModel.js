@@ -57,3 +57,10 @@ exports.updateGameByName = async(nameOfGame, updatedInfo) =>{
     console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
 
+//Tìm game có tên giống vậy
+exports.getsamename = async(gametitle) =>{
+    const gamecollection = db().collection('Our games');
+    const result = await gamecollection.find({name: /gametitle/}).toArray();
+    console.dir(games);
+    return games;
+}

@@ -51,7 +51,7 @@ body {
 }
 
 .list-menu a {
-    color: #343a40
+    color: blue;
 }
 
 a {
@@ -119,4 +119,8 @@ a {
     display: block;
     min-height: 1.5rem;
     padding-left: 1.5rem
+}
+
+.shop-category-title{
+    color: black;
 }

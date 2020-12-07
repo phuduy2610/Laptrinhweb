@@ -32,6 +32,9 @@ hbs.registerHelper( "when",function(operand_1, operator, operand_2, options) {
   else  return options.inverse(this);
 });
 
+//middleware for searching game like "%...%"
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
