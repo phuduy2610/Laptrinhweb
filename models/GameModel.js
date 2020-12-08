@@ -58,18 +58,25 @@ exports.deletegame = async(gametitle) =>{
 //updateGameByName("Dragon Age II", { Price: 30$, genre: FPS });
 exports.updateGameByName = async(nameOfGame, updatedInfo) =>{
     const gamecollection = db().collection('Our games');
-    result = await gamecollection.updateOne({ name: nameOfGame }, { $set: updatedInfo });
+    result = await gamecollection.updateOne({ title: nameOfGame }, { $set: updatedInfo });
     console.log(`${result.matchedCount} document(s) matched the query criteria.`);
     console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
 
+// //Tìm game có tên giống vậy
+// exports.getbypagesamename = async(page_number, item_per_page, gametitle) =>{
+//     const gamecollection = db().collection('Our games');
+//     const games = await gamecollection.find({title: new RegExp(gametitle)}).skip((page_number - 1)*item_per_page).limit(item_per_page).toArray();
+//     return games;
+// }
+
 //Tìm game có tên giống vậy
-exports.getsamename = async(gametitle) =>{
+exports.getbypagesamename = async(page_number, item_per_page, gametitle) =>{
     const gamecollection = db().collection('Our games');
-    const result = await gamecollection.find({name: /gametitle/}).toArray();
-    console.dir(games);
+    const games = await gamecollection.find({title: {$regex : gametitle, $options: 'i'}}).skip((page_number - 1)*item_per_page).limit(item_per_page).toArray();
     return games;
 }
+
 //Lấy game theo trang
 exports.getbypage = async(page_number, item_per_page )=>{
     const gamecollection = db().collection('Our games');
@@ -82,3 +89,4 @@ exports.getGameCount = async()=>{
     const gameCount = await db().collection('Our games').countDocuments();
     return gameCount;
 }
+

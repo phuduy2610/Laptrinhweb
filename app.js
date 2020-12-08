@@ -10,6 +10,8 @@ var paginate = require('handlebars-paginate');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
+const searchRouter = require('./routes/search');
+const { index } = require('./controllers/indexController');
 
 
 
@@ -52,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shop',shopRouter);
+app.use('/search',searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -8,7 +8,7 @@ exports.index = async (req, res, next) => {
     //Page
     const pagination = {
         page : current_page ,
-        pageCount : Math.ceil(parseInt(GameCount) / limit)
+        pageCount : Math.ceil(parseInt(GameCount) / limit),
     }
     res.render('shop/shop', {games,pagination});
 };
@@ -18,10 +18,4 @@ exports.details = async (req, res, next) => {
    const game = await GameModel.getonebyid(req.params.id);
    console.log('single games',game);
    res.render('shop/single', {game});
-};
-
-exports.search = async(req,res,next)=>{
-  const games = await GameModel.getsamename(req.params.search);
-  console.log('games', games);
-  res.render('shope/shope',{games});  
 };

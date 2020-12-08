@@ -4187,6 +4187,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .pagination > .disabled > a:focus {
   color: #999;
   cursor: not-allowed;
+  pointer-events: none;
   background-color: #fff;
   border-color: #ddd;
 }

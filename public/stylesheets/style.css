@@ -203,21 +203,11 @@ body a{
 }
 .sb-icon-search {
 	color: #FFF;
-background: #000 url('../images/img-sprite.png') no-repeat 0px 1px;
-z-index: 90;
-}
-/* Open state */
-.sb-search.sb-search-open,.no-js .sb-search {
-	width:40%;
-}
-.sb-search.sb-search-open .sb-icon-search,.no-js .sb-search .sb-icon-search {
-	background: #c0c0c0 url('../images/img-sprite.png') no-repeat 0px 1px;
-	color: #fff;
-	z-index: 11;
-}
-.sb-search.sb-search-open .sb-search-submit,.no-js .sb-search .sb-search-submit {
+	background: #000 url('../images/img-sprite.png') no-repeat 0px 1px;
 	z-index: 90;
 }
+
+
 /* start icon styles */
 .icon1:before,.icon1:after {
 	content: "";
