@@ -4,7 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
-var paginate = require('handlebars-paginate');
+//var paginate = require('handlebars-paginate');
+var paginate = require('dontfinthis');
 
 
 const indexRouter = require('./routes/index');
