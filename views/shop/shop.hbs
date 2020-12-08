@@ -16,10 +16,10 @@
                                         <div class="filter-content collapse" id="collapse_aside1" style="">
                                             <div class="card-body">
                                                 <ul class="list-menu">
-                                                    <li><a href="#" data-abc="true">Strategy </a></li>
-                                                    <li><a href="#" data-abc="true">RPG </a></li>
-                                                    <li><a href="#" data-abc="true">Fighting </a></li>
-                                                    <li><a href="#" data-abc="true">Shooter </a></li>
+                                                    <li><a href="/search/Strategy" data-abc="true">Strategy ({{Count.strategy}})</a></li>
+                                                    <li><a href="/search/RPG" data-abc="true">RPG ({{Count.rpg}})</a></li>
+                                                    <li><a href="/search/Fighting" data-abc="true">Fighting ({{Count.fighting}})</a></li>
+                                                    <li><a href="/search/Shooter" data-abc="true">Shooter ({{Count.shooter}})</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                 <div class="col-8">
                     <div class="row shop_box-top">
                         {{#each games}}
-                        {{#when @index '<' 10}}
+                        {{!-- {{#when @index '<' 10}} --}}
                         <div class="col-md-3 shop_box"><a href="shop/{{id}}">
                                 <img src="{{cover}}" class="img-responsive" alt="" />
                                 <span class="new-box">
@@ -85,7 +85,7 @@
                                     <span class="sale-label">Sale!</span>
                                 </span>
                                 <div class="shop_desc">
-                                    <h3><a href="#">{{title}}</a></h3>
+                                    <h3><a href="shop/{{id}}">{{title}}</a></h3>
                                     <span class="reducedfrom">{{basePrice}}</span>
                                     <span class="actual">$12.00</span><br>
                                     <ul class="buttons">
@@ -95,7 +95,7 @@
                                     </ul>
                                 </div>
                             </a></div>
-                        {{/when}}
+                        {{!-- {{/when}} --}}
                         {{/each}}
                     </div>
                     {{!-- <div class="row">

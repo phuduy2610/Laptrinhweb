@@ -34,9 +34,14 @@ exports.getHighestId = async()=>{
 }
 
 //Tìm nhiều game có cùng genre
-exports.getsamegenre = async(gamegenre) =>{
+exports.getbypagesamegenre = async(page_number, item_per_page,gamegenre) =>{
+    // chuyển từ thể loại sang object id của thể loại
+    const genreCollection = db().collection('Genres');
+    const genre = await genreCollection.findOne({Genre: {$regex : gamegenre, $options: 'i'}});
+
+    // lấy game từ object id thể loại
     const gamecollection = db().collection('Our games');
-    const games = await gamecollection.find({genre: gamegenre}).toArray();
+    const games = await gamecollection.find({category: ObjectId(genre._id)}).skip((page_number - 1)*item_per_page).limit(item_per_page).toArray();
     return games;
 }
  
@@ -63,13 +68,6 @@ exports.updateGameByName = async(nameOfGame, updatedInfo) =>{
     console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
 
-// //Tìm game có tên giống vậy
-// exports.getbypagesamename = async(page_number, item_per_page, gametitle) =>{
-//     const gamecollection = db().collection('Our games');
-//     const games = await gamecollection.find({title: new RegExp(gametitle)}).skip((page_number - 1)*item_per_page).limit(item_per_page).toArray();
-//     return games;
-// }
-
 //Tìm game có tên giống vậy
 exports.getbypagesamename = async(page_number, item_per_page, gametitle) =>{
     const gamecollection = db().collection('Our games');
@@ -90,3 +88,22 @@ exports.getGameCount = async()=>{
     return gameCount;
 }
 
+//Lấy số lượng game theo genre
+exports.getGameCountByGenre = async(gamegenre)=>{
+    // chuyển từ thể loại sang object id của thể loại
+    const genreCollection = db().collection('Genres');
+    const genre = await genreCollection.findOne({Genre: {$regex : gamegenre, $options: 'i'}});
+
+    // lấy game từ object id thể loại
+    const gamecollection = db().collection('Our games');
+    const games = await gamecollection.find({category: ObjectId(genre._id)}).toArray();
+    return games.length;
+}
+
+//Lấy số lượng game theo genre
+exports.getGameCountGetsamename = async(gametitle)=>{
+
+    const gamecollection = db().collection('Our games');
+    const games = await gamecollection.find({title: {$regex : gametitle, $options: 'i'}}).toArray();
+    return games.length;
+}
