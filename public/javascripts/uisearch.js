@@ -16,7 +16,7 @@ $("document").ready(function()
             type: 'get',
 			data: $('.sb-search-input').serialize(),
             success: function() {
-				window.location = 'http://localhost:3000/search?keyword=' + value;
+				window.location = '/search?keyword=' + value;
 			 }});
 	})
 	$(".sb-search").hover(function(){
