@@ -1,6 +1,5 @@
 const { MongoClient } = require("mongodb");
-const uri = "mongodb+srv://duy:Newlife2000@clustergamestore.iwhtk.mongodb.net/GameStoreDatabase?retryWrites=true&w=majority";
-
+const uri = process.env.DbURI;
 // Create a new MongoClient
 const client = new MongoClient(uri, { useNewUrlParser: true,useUnifiedTopology: true });
 
