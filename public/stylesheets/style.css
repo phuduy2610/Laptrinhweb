@@ -30,6 +30,10 @@ body a{
 	 float:left;
 	 margin: 17px 0 0;
 }
+.user img{
+	display: flex;
+	justify-content: center;
+}
   .menu li{
 	display:inline-block;
  }
@@ -1183,8 +1187,8 @@ p.m_7{
 }
 p.m_8{
 	color:#333;
-	font-size:0.85em;
-	line-height:1.8em;
+	font-size:1.0 em;
+	line-height:2.8em;
 	margin-bottom:5%;
 }
 .address p {
@@ -1249,6 +1253,7 @@ p.m_8{
 	font-size: 0.95em;
 	font-weight: normal;
 	padding:15px 40px;
+	margin-right: 28px;
 	text-transform: uppercase;
 	background:#E25050;
 	display: inline-block;

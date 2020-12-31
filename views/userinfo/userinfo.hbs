@@ -1,0 +1,42 @@
+<div class="main">
+	<div class="shop_top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+ 					<img src="{{user.cover}}" class="img-responsive" alt=""/>
+				</div>
+				<div class="col-md-5">
+					<p class="m_8">Name: 	<b>{{user.name}}</b></p>
+					<p class="m_8">Email: 	<b>{{user.email}}</b></p>
+					<p class="m_8">Birthday:	<b>{{user.birthday}}</b></p>
+					<p class="m_8">Phone Number:	<b>{{user.phone}}</b></p>
+
+					{{!-- <div class="address"> --}}
+
+						{{!-- <p>Email: <span>support[at]snow.com</span></p> --}}
+						{{!-- <p>Follow on: <span>Facebook</span>, <span>Twitter</span></p> --}}
+						{{!-- </div> --}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 contact">
+					<form method="post">
+						<div class="to">
+							<input type="text" name="name" class="text" value="{{user.name}}">
+							<input type="text" name="email" class="text" value="{{user.email}}">
+							<input type="text" name="birthday" class="text" value="{{user.birthday}}">
+						</div>
+						<div class="to">
+							<input type="text" name="phone" class="text" value="{{user.phone}}">
+							{{!-- <input type="text" name="cover"  class="text" value="Image Link" > --}}
+							<div class="form-submit">
+								<input name="submit" type="submit" id="submit" value="Submit Edit"><br>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
