@@ -136,7 +136,7 @@ body a{
  }
 .header_right{
 	float:right;
-	width:6%;
+	width:10%;
 	margin-top: 16px;
 }
 .sb-search {
@@ -1792,7 +1792,7 @@ fieldset.input input[type="submit"]:hover {
 	padding: 5px 10px;
  }
 .header_right {
-	width: 7%;
+	width: 15%;
  }
 .icon1 ul {
 	width: 250px;
@@ -1824,7 +1824,7 @@ fieldset.input input[type="submit"]:hover {
 	 margin:10px 0 0;
   }
   .header_right {
-	 width: 10%;
+	 width: 15%;
   }
   .icon1 ul {
 	width: 250px;
@@ -1917,7 +1917,7 @@ fieldset.input input[type="submit"]:hover {
 }
 @media (max-width:640px){
   .header_right {
-	 width: 11%;
+	 width: 20%;
   }
    .etalage_zoom_area div {
 	 width:250px !important;
@@ -1929,7 +1929,7 @@ fieldset.input input[type="submit"]:hover {
 }
 @media (max-width:480px){
   .header_right {
-	 width: 15%;
+	 width: 25%;
   }
    .etalage_zoom_area div {
 	 width:100px !important;
