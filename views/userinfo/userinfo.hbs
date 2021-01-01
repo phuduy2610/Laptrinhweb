@@ -20,7 +20,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12 contact">
-					<form method="post">
+					<form method="post" enctype="multipart/form-data">
 						<div class="to">
 							<input type="text" name="name" class="text" value="{{user.name}}">
 							<input type="text" name="email" class="text" value="{{user.email}}">
@@ -28,7 +28,7 @@
 						</div>
 						<div class="to">
 							<input type="text" name="phone" class="text" value="{{user.phone}}">
-							{{!-- <input type="text" name="cover"  class="text" value="Image Link" > --}}
+							<input type="file" name="coverImage"  class="text" value="Image Link" >
 							<div class="form-submit">
 								<input name="submit" type="submit" id="submit" value="Submit Edit"><br>
 							</div>
