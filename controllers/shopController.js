@@ -1,4 +1,5 @@
 const GameModel = require('../models/gameModel');
+const {ObjectId} = require('mongodb');
 
 exports.index = async (req, res, next) => {
     const limit = 8 ;
@@ -25,5 +26,6 @@ exports.index = async (req, res, next) => {
 
 exports.details = async (req, res, next) => {
    const game = await GameModel.getonebyid(req.params.id);
-   res.render('shop/single', {game});
+   const games = await GameModel.getbylimitsamegenre(4,game.category,game.title);
+   res.render('shop/single', {game,games});
 };

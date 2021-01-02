@@ -26,10 +26,7 @@
                     <!-- end product_slider -->
                     <div class="single_right">
                         <h3>{{game.title}}</h3>
-                        <p class="m_10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-                            veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                            commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse</p>
+                        <p class="m_10">{{game.Description}}</p>
                         <div class="btn_form">
                             <form>
                                 <input type="submit" value="buy now" title="">
@@ -62,10 +59,10 @@
                 <h4>Description</h4>
                 <p>{{game.Description}}</p>
             </div>
+            <h4 class="m_11">Related Products in the same Category</h4>
             <div class="row">
-                <h4 class="m_11">Related Products in the same Category</h4>
-                {{#each game}}
-                <div class="col-md-4 product1">
+                {{#each games}}
+                <div class="col-md-2">
                     <img src="{{cover}}" class="img-responsive" alt="" />
                     <div class="shop_desc"><a href="single.html">
                         </a>
@@ -73,7 +70,6 @@
                         <span class="reducedfrom">{{basePrice}}</span>
                         <span class="actual">$12.00</span><br>
                         <ul class="buttons">
-                            <li class="cart"><a href="#">Add To Cart</a></li>
                             <li class="shop_btn"><a href="#">Read More</a></li>
                             <div class="clear"> </div>
                         </ul>

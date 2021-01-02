@@ -33,7 +33,7 @@ exports.getHighestId = async()=>{
     return game;
 }
 
-//Tìm nhiều game có cùng genre
+//Tìm nhiều game có cùng genre theo phân trang
 exports.getbypagesamegenre = async(page_number, item_per_page,gamegenre) =>{
     // chuyển từ thể loại sang object id của thể loại
     const genreCollection = db().collection('Genres');
@@ -45,6 +45,18 @@ exports.getbypagesamegenre = async(page_number, item_per_page,gamegenre) =>{
     return games;
 }
  
+//Tìm nhiều game có cùng genre
+exports.getbylimitsamegenre = async(item_per_page,gamegenre,gamename) =>{
+    // chuyển từ thể loại sang object id của thể loại
+    const genreCollection = db().collection('Genres');
+    const genre = await genreCollection.findOne({_id:ObjectId(gamegenre) });
+
+    // lấy game từ object id thể loại
+    const gamecollection = db().collection('Our games');
+    const games = await gamecollection.find({category: ObjectId(genre._id),title:{$ne:gamename}}).limit(item_per_page).toArray();
+    return games;
+}
+
 // Thêm 1 game 
 exports.addnewgame = async(gameinfo) =>{
     const gamecollection = db().collection('Our games');
@@ -107,3 +119,4 @@ exports.getGameCountGetsamename = async(gametitle)=>{
     const games = await gamecollection.find({title: {$regex : gametitle, $options: 'i'}}).toArray();
     return games.length;
 }
+
