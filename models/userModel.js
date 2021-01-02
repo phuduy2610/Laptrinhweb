@@ -1,5 +1,6 @@
 const {db} = require('../db/db');
 const {ObjectId} = require('mongodb');
+const bcrypt = require('bcrypt');
 
 //Khai báo biến collection
 
@@ -36,11 +37,11 @@ exports.getHighestId = async()=>{
 
  
 // Thêm 1 user 
-exports.addnewuser = async(userinfo) =>{
-    const usercollection = db().collection('Users');
-    const result = await usercollection.insertOne(userinfo);
-    console.log(`New listing created with the following id: ${result.insertedId}`);
-}
+// exports.addnewuser = async(userinfo) =>{
+//     const usercollection = db().collection('Users');
+//     const result = await usercollection.insertOne(userinfo);
+//     console.log(`New listing created with the following id: ${result.insertedId}`);
+// }
 
 // Xoá 1 user theo tên
 exports.deleteuser = async(username) =>{
@@ -83,4 +84,55 @@ exports.getbypage = async(page_number, item_per_page )=>{
 exports.getuserCount = async()=>{
     const userCount = await db().collection('Users').countDocuments();
     return userCount;
+}
+
+//Kiểm tra thông tin user hợp lệ để đăng nhập
+exports.checkCredential = async(username,password) => {
+    const user = await db().collection('Users').findOne({email: username,status : true});
+    let bpassword = null;
+    if(user)
+    {
+        bpassword = await bcrypt.compare(password,user.password);
+    }
+    else
+    {
+        return null;
+    }
+    if(bpassword)
+    {
+        return user;
+    }
+    else
+    {
+        return null;
+    }
+}
+
+// thêm user vào db
+exports.addNewUser = async(user) => {
+    const userCollection = db().collection('Users');
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(user.password, salt);
+    const newUser = {
+    username: user.username,
+    email: user.email,
+    password: hash,
+    status: user.status
+  } 
+  const result = await userCollection.insertOne(user);
+  console.log(`New listing created with the following id: ${result.insertedId}`);
+  const User = await userCollection.findOne({email: user.email});
+  return User;
+}
+
+// lấy user theo email 
+exports.isEmailExist = async(email) => {
+    const userCollection = db().collection('Users');
+    const result = await userCollection.findOne({email: email});
+    if(result) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }

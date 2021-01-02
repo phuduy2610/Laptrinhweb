@@ -37,7 +37,7 @@ exports.getHighestId = async()=>{
 exports.getbypagesamegenre = async(page_number, item_per_page,gamegenre) =>{
     // chuyển từ thể loại sang object id của thể loại
     const genreCollection = db().collection('Genres');
-    const genre = await genreCollection.findOne({Genre: {$regex : gamegenre, $options: 'i'}});
+    const genre = await genreCollection.findOne({name: {$regex : gamegenre, $options: 'i'}});
 
     // lấy game từ object id thể loại
     const gamecollection = db().collection('Our games');
@@ -92,7 +92,7 @@ exports.getGameCount = async()=>{
 exports.getGameCountByGenre = async(gamegenre)=>{
     // chuyển từ thể loại sang object id của thể loại
     const genreCollection = db().collection('Genres');
-    const genre = await genreCollection.findOne({Genre: {$regex : gamegenre, $options: 'i'}});
+    const genre = await genreCollection.findOne({name: {$regex : gamegenre, $options: 'i'}});
 
     // lấy game từ object id thể loại
     const gamecollection = db().collection('Our games');

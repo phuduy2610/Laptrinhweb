@@ -10,14 +10,23 @@ $("document").ready(function()
 	})
 	$("#search-form").submit(function(e){
 		let value = $(".sb-search-input").val();
-		console.log(value);
 		e.preventDefault();
-		$.ajax({
-            type: 'get',
-			data: $('.sb-search-input').serialize(),
-            success: function() {
-				window.location = '/search?keyword=' + value;
-			 }});
+		if(value!='')
+		{
+			$.ajax({
+				type: 'get',
+				data: $('.sb-search-input').serialize(),
+				success: function() {
+					window.location = '/search?keyword=' + value;
+				 }});
+		}
+		else
+		{
+			$(".sb-search").css("width","0%");
+			$(".sb-search-submit").css("z-index","-1");
+			$(".sb-icon-search").css("background","#000 url('../images/img-sprite.png') no-repeat 0px 1px");
+			$(".sb-icon-search").css("z-index","90");
+		}
 	})
 	$(".sb-search").hover(function(){
 		clearTimeout(timer);

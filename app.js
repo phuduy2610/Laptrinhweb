@@ -7,15 +7,21 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
 //var paginate = require('handlebars-paginate');
-var paginate = require('dontfinthis');
+const paginate = require('dontfinthis');
+const session = require('express-session');
+const passport = require('./passport');
+
 
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const userRouter = require('./routes/user');
 const shopRouter = require('./routes/shop');
 const searchRouter = require('./routes/search');
-const userinfoRouter = require('./routes/userinfo');
+const loginRouter = require('./routes/login');
+const registerRouter = require('./routes/register');
+const logoutRouter = require('./routes/logout');
 const { index } = require('./controllers/indexController');
+const { register } = require('./controllers/userController');
 
 
 
@@ -42,6 +48,16 @@ hbs.registerHelper( "when",function(operand_1, operator, operand_2, options) {
 //middleware for searching game like "%...%"
 hbs.registerHelper("paginate", paginate);
 
+// passport
+app.use(session({secret: 'doubleD',resave: false,saveUninitialized: true,})); // TODO: đưa secret vào env
+app.use(passport.initialize());
+app.use(passport.session());
+// pass req.user to res.locals
+app.use(function(req,res,next){
+  res.locals.user = req.user;
+  next();
+})
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,10 +72,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 app.use('/shop',shopRouter);
 app.use('/search',searchRouter);
-app.use('/userinfo',userinfoRouter);
+app.use('/login',loginRouter);
+app.use('/register',registerRouter);
+app.use('/logout',logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
