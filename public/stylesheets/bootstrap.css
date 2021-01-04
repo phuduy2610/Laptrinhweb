@@ -5784,3 +5784,6 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.table tr th {
+  background:#eee;    
+}

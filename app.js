@@ -22,6 +22,7 @@ const registerRouter = require('./routes/register');
 const logoutRouter = require('./routes/logout');
 const { index } = require('./controllers/indexController');
 const { register } = require('./controllers/userController');
+const cartRouter = require('./routes/cart');
 
 
 
@@ -58,6 +59,11 @@ app.use(function(req,res,next){
   next();
 })
 
+// session
+app.use(function(req,res,next){
+  res.locals.session = req.session;
+  next();
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -78,7 +84,7 @@ app.use('/search',searchRouter);
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);
 app.use('/logout',logoutRouter);
-
+app.use('/cart',cartRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
