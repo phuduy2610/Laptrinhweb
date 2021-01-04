@@ -24,6 +24,7 @@ const validateRouter = require('./routes/validate');
 const forgotRouter = require('./routes/forgot');
 const { index } = require('./controllers/indexController');
 const { register } = require('./controllers/userController');
+const cartRouter = require('./routes/cart');
 
 // api
 const userApiRouter = require('./routes/api/user');
@@ -102,6 +103,7 @@ app.use('/logout',checkAcessible,logoutRouter);
 app.use('/api/user',userApiRouter);
 app.use('/validate',validateRouter);
 app.use('/forgot',isLogged,forgotRouter);
+app.use('/cart',cartRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

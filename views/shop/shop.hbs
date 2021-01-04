@@ -16,10 +16,14 @@
                                         <div class="filter-content collapse" id="collapse_aside1" style="">
                                             <div class="card-body">
                                                 <ul class="list-menu">
-                                                    <li><a href="/search/Strategy" data-abc="true">Strategy ({{Count.strategy}})</a></li>
-                                                    <li><a href="/search/RPG" data-abc="true">RPG ({{Count.rpg}})</a></li>
-                                                    <li><a href="/search/Fighting" data-abc="true">Fighting ({{Count.fighting}})</a></li>
-                                                    <li><a href="/search/Shooter" data-abc="true">Shooter ({{Count.shooter}})</a></li>
+                                                    <li><a href="/search/Strategy" data-abc="true">Strategy
+                                                            ({{Count.strategy}})</a></li>
+                                                    <li><a href="/search/RPG" data-abc="true">RPG ({{Count.rpg}})</a>
+                                                    </li>
+                                                    <li><a href="/search/Fighting" data-abc="true">Fighting
+                                                            ({{Count.fighting}})</a></li>
+                                                    <li><a href="/search/Shooter" data-abc="true">Shooter
+                                                            ({{Count.shooter}})</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -75,79 +79,86 @@
                 <div class="col-8">
                     <div class="row shop_box-top">
                         {{#each games}}
-                        {{!-- {{#when @index '<' 10}} --}}
-                        <div class="col-md-3 shop_box"><a href="shop/{{id}}">
+                        {{!-- {{#when @index '<' 10}} --}} <div class="col-md-3 shop_box"><a href="shop/{{id}}">
                                 <img src="{{cover}}" class="img-responsive" alt="" />
-                                <span class="new-box">
+                                {{!-- <span class="new-box">
                                     <span class="new-label">New</span>
                                 </span>
                                 <span class="sale-box">
                                     <span class="sale-label">Sale!</span>
-                                </span>
+                                </span> --}}
                                 <div class="shop_desc">
                                     <h3><a href="shop/{{id}}">{{title}}</a></h3>
-                                    <span class="reducedfrom">{{basePrice}}</span>
-                                    <span class="actual">$12.00</span><br>
-                                    <ul class="buttons">
-                                        <li class="cart"><a href="#">Add To Cart</a></li>
-                                        <li class="shop_btn"><a href="#">Read More</a></li>
-                                        <div class="clear"> </div>
-                                    </ul>
-                                </div>
-                            </a></div>
-                        {{!-- {{/when}} --}}
-                        {{/each}}
-                    </div>
-                    {{!-- <div class="row">
-                        {{#each games}}
-                        {{#when @index '>' 3}}
-                        <div class="col-md-3 shop_box"><a href="shop/{{id}}">
-                                <img src="{{cover}}" class="img-responsive" alt="" />
-                                <span class="new-box">
-                                    <span class="new-label">New</span>
-                                </span>
-                                <div class="shop_desc">
-                                    <h3><a href="#">{{title}}</a></h3>
+                                    {{!-- <span class="reducedfrom">{{basePrice}}</span> --}}
                                     <span class="actual">{{basePrice}}</span><br>
                                     <ul class="buttons">
-                                        <li class="cart"><a href="#">Add To Cart</a></li>
-                                        <li class="shop_btn"><a href="#">Read More</a></li>
+                                        <li class="cart"><a href="shop/add-to-cart/{{id}}"
+                                                class="trigger_popup_fricc">Add To Cart</a></li>
+                                        <li class="shop_btn"><a href="shop/{{id}}">Read More</a></li>
                                         <div class="clear"> </div>
                                     </ul>
                                 </div>
                             </a></div>
-                        {{/when}}
-                        {{/each}}
-                    </div> --}}
+                    {{!-- {{/when}} --}}
+                    {{/each}}
                 </div>
+                {{!-- <div class="row">
+                    {{#each games}}
+                    {{#when @index '>' 3}}
+                    <div class="col-md-3 shop_box"><a href="shop/{{id}}">
+                            <img src="{{cover}}" class="img-responsive" alt="" />
+                            <span class="new-box">
+                                <span class="new-label">New</span>
+                            </span>
+                            <div class="shop_desc">
+                                <h3><a href="#">{{title}}</a></h3>
+                                <span class="actual">{{basePrice}}</span><br>
+                                <ul class="buttons">
+                                    <li class="cart"><a href="#">Add To Cart</a></li>
+                                    <li class="shop_btn"><a href="#">Read More</a></li>
+                                    <div class="clear"> </div>
+                                </ul>
+                            </div>
+                        </a></div>
+                    {{/when}}
+                    {{/each}}
+                </div> --}}
             </div>
         </div>
     </div>
-    <div class="shop-bottom">
-        <div class="container-fluid">
-            <div class="row d-flex justify-content-center">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <div class="pagination pagination-centered">
-                            {{#paginate pagination type="first"}}
-                            <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">First</a></li>
-                            {{/paginate}}
-                            {{#paginate pagination type="previous"}}
-                            <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Prev</a></li>
-                            {{/paginate}}
-                            {{#paginate pagination type="middle" limit="3"}}
-                            <li {{#if active}}class="active" {{/if}}><a href="{{parent}}page={{n}}">{{n}}</a></li>
-                            {{/paginate}}
-                            {{#paginate pagination type="next"}}
-                            <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Next</a></li>
-                            {{/paginate}}
-                            {{#paginate pagination type="last"}}
-                            <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Last</a></li>
-                            {{/paginate}}
-                        </div>
-                    </ul>
-                </nav>
-            </div>
+</div>
+<div class="shop-bottom">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <div class="pagination pagination-centered">
+                        {{#paginate pagination type="first"}}
+                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">First</a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="previous"}}
+                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Prev</a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="middle" limit="3"}}
+                        <li {{#if active}}class="active" {{/if}}><a href="{{parent}}page={{n}}">{{n}}</a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="next"}}
+                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Next</a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="last"}}
+                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Last</a></li>
+                        {{/paginate}}
+                    </div>
+                </ul>
+            </nav>
         </div>
     </div>
+</div>
+<div class="hover_bkgr_fricc">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton">&times;</div>
+        <p>Product has been added successfully</p>
+    </div>
+</div>
 </div>

@@ -10,30 +10,26 @@
             <div class="row">
                 <div class="col-md-9 single_left">
                     <div class="single_image">
-                        <ul id="etalage">
+                        <form method="POST">
+                        <img src="{{game.cover}}" class="img-responsive" alt=""/>
+                        {{!-- <ul id="etalage">
                             <li>
                                 <a href="optionallink.html">
                                     <img class="etalage_thumb_image" src="{{game.cover}}" />
                                     <img class="etalage_source_image" src="{{game.cover}}" />
                                 </a>
-                            </li>
+                            </li> --}}
                             {{!-- <li>
                                 <img class="etalage_thumb_image" src="{{game.cover}}" />
                                 <img class="etalage_source_image" src="{{game.cover}}" />
                             </li> --}}
-                        </ul>
+                        {{!-- </ul> --}}
                     </div>
                     <!-- end product_slider -->
                     <div class="single_right">
-                        <h3>{{game.title}}</h3>
-                        <p class="m_10">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-                            veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                            commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse</p>
+                        <h3 >{{game.title}}</h3>
+                        <p class="m_10">{{game.Description}}</p>
                         <div class="btn_form">
-                            <form>
-                                <input type="submit" value="buy now" title="">
-                            </form>
                         </div>
                     </div>
                     <div class="clear"> </div>
@@ -43,18 +39,18 @@
                         <p class="price2">{{game.basePrice}}</p>
                         <ul class="prosuct-qty">
                             <span>Quantity:</span>
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
+                            <select name="quantity">
+                                <option value ="1">1</option>
+                                <option value ="2">2</option>
+                                <option value ="3">3</option>
+                                <option value ="4">4</option>
+                                <option value ="5">5</option>
                             </select>
                         </ul>
                         <button type="submit" name="Submit" class="exclusive">
                             <span>Add to cart</span>
                         </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -62,19 +58,18 @@
                 <h4>Description</h4>
                 <p>{{game.Description}}</p>
             </div>
+            <h4 class="m_11">Related Products in the same Category</h4>
             <div class="row">
-                <h4 class="m_11">Related Products in the same Category</h4>
-                {{#each game}}
-                <div class="col-md-4 product1">
+                {{#each games}}
+                <div class="col-md-2">
                     <img src="{{cover}}" class="img-responsive" alt="" />
-                    <div class="shop_desc"><a href="single.html">
+                    <div class="shop_desc"><a href="{{id}}">
                         </a>
-                        <h3><a href="single.html"></a><a href="#">{{title}}</a></h3>
-                        <span class="reducedfrom">{{basePrice}}</span>
-                        <span class="actual">$12.00</span><br>
+                        <h3><a href="single.html"></a><a href="{{id}}">{{title}}</a></h3>
+                        {{!-- <span class="reducedfrom">{{basePrice}}</span> --}}
+                        <span class="actual">{{basePrice}}</span><br>
                         <ul class="buttons">
-                            <li class="cart"><a href="#">Add To Cart</a></li>
-                            <li class="shop_btn"><a href="#">Read More</a></li>
+                            <li class="shop_btn"><a href="{{id}}">Read More</a></li>
                             <div class="clear"> </div>
                         </ul>
                     </div>
