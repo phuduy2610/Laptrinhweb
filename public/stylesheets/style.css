@@ -1613,7 +1613,7 @@ h4.title {
 }
 input.inputbox, input.required, div.k2AccountPage input[type="text"] {
 	background: #FFF;
-	outline-color: #00BFF0;
+	outline-color: black;
 	border: 1px solid #EEE;
 	color: inherit;
 	padding: 7px 20px;
@@ -1673,7 +1673,7 @@ fieldset.input input[type="submit"]:hover {
 }
 .register-top-grid input[type="text"], .register-bottom-grid input[type="text"] {
 	border: 1px solid #EEE;
-	outline-color:#00BFF0;
+	outline-color: black;
 	width: 96%;
 	font-size: 1em;
 	padding: 0.5em;
@@ -1682,7 +1682,7 @@ fieldset.input input[type="submit"]:hover {
 /* TODO: changed */
 .register-top-grid input[type="password"], .register-bottom-grid input[type="password"] {
 	border: 1px solid #EEE;
-	outline-color:#00BFF0;
+	outline-color: black;
 	width: 96%;
 	font-size: 1em;
 	padding: 0.5em;
@@ -1691,7 +1691,7 @@ fieldset.input input[type="submit"]:hover {
 /* TODO: changed */
 .register-top-grid input[type="email"], .register-bottom-grid input[type="email"] {
 	border: 1px solid #EEE;
-	outline-color:#00BFF0;
+	outline-color:black;
 	width: 96%;
 	font-size: 1em;
 	padding: 0.5em;
@@ -1785,6 +1785,141 @@ fieldset.input input[type="submit"]:hover {
 	text-transform: uppercase;
 }
 .register-grids form input[type="submit"]:hover {
+	background:#555;
+}
+/*--forgot--*/
+.forgot-top-grid h3, .forgot-bottom-grid h3 {
+	color:#000;
+	font-size: 1em;
+	padding-bottom: 5px;
+	margin: 0;
+}
+.forgot-top-grid div, .forgot-bottom-grid div {
+	width: 48%;
+	float: left;
+	margin: 10px 0;
+}
+.forgot-top-grid span, .forgot-bottom-grid span {
+	color:#555;
+	font-size: 0.8125em;
+	padding-bottom: 0.2em;
+	display: block;
+	text-transform: uppercase;
+}
+.forgot-top-grid input[type="text"], .forgot-bottom-grid input[type="text"] {
+	border: 1px solid #EEE;
+	outline-color: black;
+	width: 96%;
+	font-size: 1em;
+	padding: 0.5em;
+	font-family: 'Open Sans', sans-serif;
+}
+/* TODO: changed */
+.forgot-top-grid input[type="password"], .forgot-bottom-grid input[type="password"] {
+	border: 1px solid #EEE;
+	outline-color: black;
+	width: 96%;
+	font-size: 1em;
+	padding: 0.5em;
+	font-family: 'Open Sans', sans-serif;
+}
+/* TODO: changed */
+.forgot-top-grid input[type="email"], .forgot-bottom-grid input[type="email"] {
+	border: 1px solid #EEE;
+	outline-color:black;
+	width: 96%;
+	font-size: 1em;
+	padding: 0.5em;
+	font-family: 'Open Sans', sans-serif;
+}
+.checkbox {
+	margin-bottom: 4px;
+	padding-left: 27px;
+	font-size: 1.1em;
+	line-height: 27px;
+	cursor: pointer;
+}
+.checkbox {
+	float: left;
+	margin-left: 8px;
+	position: relative;
+	font-weight: 600;
+}
+.checkbox:last-child {
+	margin-bottom: 4px;
+}
+.checkbox:last-child {
+	margin-bottom: 0;
+}
+.news-letter {
+	color: #555;
+	font-weight:600;
+	font-size: 0.85em;
+	margin-bottom: 1em;
+	display: block;
+	text-transform: uppercase;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	clear: both;
+}
+.checkbox i {
+	position: absolute;
+	bottom: 5px;
+	left: 0;
+	display: block;
+	width:20px;
+	height:20px;
+	outline: none;
+	border: 2px solid #DDD;
+}
+.checkbox input + i:after {
+	content: '';
+	background: url("../images/tick1.png") no-repeat 1px 2px;
+	top: -1px;
+	left: -1px;
+	width: 15px;
+	height: 15px;
+	font: normal 12px/16px FontAwesome;
+	text-align: center;
+}
+.checkbox input + i:after {
+	position: absolute;
+	opacity: 0;
+	transition: opacity 0.1s;
+	-o-transition: opacity 0.1s;
+	-ms-transition: opacity 0.1s;
+	-moz-transition: opacity 0.1s;
+	-webkit-transition: opacity 0.1s;
+}
+.checkbox input {
+	position: absolute;
+	left: -9999px;
+}
+.checkbox input:checked + i:after {
+	opacity: 1;
+}
+.news-letter:hover {
+	color:#00BFF0;
+}
+.forgot-grids form input[type="submit"] {
+	background:#E25050;
+	color: #FFF;
+	font-size: 0.8em;
+	padding:0.8em 2.2em;
+	border:none;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	cursor: pointer;
+	outline: none;
+	text-transform: uppercase;
+}
+.forgot-grids form input[type="submit"]:hover {
 	background:#555;
 }
 /*--responsive design--*/

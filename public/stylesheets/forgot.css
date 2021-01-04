@@ -1,0 +1,8 @@
+.forgotSuccessAlert {
+    padding-top: 2rem !important;
+    color: rgb(45, 175, 45) !important;
+}
+.forgotErrorAlert {
+    padding-top: 2rem !important;
+    color: red !important;
+}

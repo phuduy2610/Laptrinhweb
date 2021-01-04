@@ -1,43 +1,39 @@
-<script src="/javascripts/register.js"></script>
+<script src="javascripts/register.js"></script>
+<link rel='stylesheet' href="stylesheets/register.css" />
 <div class="main">
     <div class="shop_top">
         <div class="container">
             <form id="registerForm">
-                <span id="registerAlert"></span>
                 <div class="register-top-grid">
                     <h3>PERSONAL INFORMATION</h3>
                     <div>
                         <span>Username<label>*</label></span>
-                        <input type="text" name="username" required>
+                        <input type="text" id="username" name="username" required />
                     </div>
                     <div>
                         <span>Email Address<label>*</label></span>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required />
                         <span id="email-validity"></span>
                     </div>
-                    {{!-- <div class="clear"> </div>
-                    <a class="news-letter" href="#">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up
-                            for Newsletter</label>
-                    </a>
-                    <div class="clear"> </div> --}}
                 </div>
                 <div class="clear"> </div>
                 <div class="register-bottom-grid">
                     <h3>LOGIN INFORMATION</h3>
                     <div>
                         <span>Password<label>*</label></span>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" required />
                     </div>
                     <div>
                         <span>Confirm Password<label>*</label></span>
-                        <input type="password" id="retype-password" required>
+                        <input type="password" id="retype-password" required />
+                        <span id="passwordAlert"></span>
                     </div>
                     <div class="clear"> </div>
                 </div>
                 <div class="clear"> </div>
-                <input id="registerSubmit" type="submit" value="submit">
+                <input id="registerSubmit" type="submit">
             </form>
+            <h5 id="registerAlert" class="below-register-grid"></h5>
         </div>
     </div>
 </div>

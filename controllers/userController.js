@@ -5,9 +5,9 @@ const cloudinary = require('cloudinary').v2;
 
 exports.index = async (req, res, next) => {
     // Get from model
-    const user = await userModel.getonebyid("1");
+    user = res.locals.user;
     // Pass data to view to display
-    res.render('userinfo/userinfo', { user });
+    res.render('user/user', { user });
 };
 
 exports.edit = async (req, res, next) => {
@@ -61,14 +61,14 @@ exports.edit = async (req, res, next) => {
     }
 
     if (flag != 0) {
-        await userModel.updateuserById("1", { name: formfields.name, birthday: formfields.birthday, phone: formfields.phone, email: formfields.email, cover: formfields.cover });
+        await userModel.updateuserById(res.locals.user._id, { name: formfields.name, birthday: formfields.birthday, phone: formfields.phone, email: formfields.email, cover: formfields.cover });
     }
     else {
-        await userModel.updateuserById("1", { name: formfields.name, birthday: formfields.birthday, phone: formfields.phone, email: formfields.email });
+        await userModel.updateuserById(res.locals.user._id, { name: formfields.name, birthday: formfields.birthday, phone: formfields.phone, email: formfields.email });
     }
 
     const user = await userModel.getonebyname(formfields.name);
-    res.render('userinfo/userinfo', { user });
+    res.render('user/user', { user });
 
 };
 

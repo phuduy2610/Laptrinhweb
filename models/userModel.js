@@ -58,9 +58,9 @@ exports.updateuserByName = async(nameOfuser, updatedInfo) =>{
     console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
 
-exports.updateuserById = async(IdOfuser, updatedInfo) =>{
+exports.updateuserById = async(userId, updatedInfo) =>{
     const usercollection = db().collection('Users');
-    result = await usercollection.updateOne({ id: IdOfuser }, { $set: updatedInfo });
+    result = await usercollection.updateOne({ _id: ObjectId(userId) }, { $set: updatedInfo });
     console.log(`${result.matchedCount} document(s) matched the query criteria.`);
     console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
@@ -119,13 +119,13 @@ exports.addNewUser = async(user) => {
     password: hash,
     status: user.status
   } 
-  const result = await userCollection.insertOne(user);
+  const result = await userCollection.insertOne(newUser);
   console.log(`New listing created with the following id: ${result.insertedId}`);
   const User = await userCollection.findOne({email: user.email});
   return User;
 }
 
-// lấy user theo email 
+// kiểm tra email có tồn tại không
 exports.isEmailExist = async(email) => {
     const userCollection = db().collection('Users');
     const result = await userCollection.findOne({email: email});
@@ -135,4 +135,80 @@ exports.isEmailExist = async(email) => {
     else {
         return false;
     }
+}
+
+// thêm code validate vào db
+exports.addValidationToken = async(validationToken,userId) => {
+    const validateCollection = db().collection('Validation');
+    validation = {
+        token: validationToken,
+        userId: ObjectId(userId)
+    }
+    validateCollection.insertOne(validation);
+}
+
+// user kích hoạt tài khoản
+exports.validateUserAccount = async(validationToken) => {
+    const validateCollection = db().collection('Validation');
+    const userCollection = db().collection('Users');
+    const user = await validateCollection.findOne({token: validationToken});
+    if(user) {
+        await userCollection.updateOne({_id: ObjectId(user.userId)},{$set:{status: true}});
+        await validateCollection.deleteOne({token: validationToken});
+    }
+}
+
+exports.getUser = async(userId) => {
+    const userCollection = db().collection('Users');
+    const user = await userCollection.findOne({_id: ObjectId(userId)});
+    if(user) {
+        return user;
+    }
+    else {
+        return null;
+    }
+}
+
+exports.getUserByEmail = async(email) => {
+    const userCollection = db().collection('Users');
+    const user = await userCollection.findOne({email: email});
+    if(user) {
+        return user;
+    }
+    else {
+        return null;
+    }
+}
+
+exports.addForgotToken = async(forgotToken,userId) => {
+    const forgotCollection = db().collection("Forgot");
+    forgotCollection.createIndex({ expireAfterSeconds: 86400});
+    forgotCollection.insert({
+        "createAt": new Date(),
+        "userId": ObjectId(userId),
+        "token": forgotToken
+    })
+}
+
+exports.removeForgotToken = async(forgotToken) => {
+    const forgotCollection = db().collection("Forgot");
+    await forgotCollection.deleteOne({token: forgotToken});
+}
+
+exports.getUserIdFromForgot = async(forgotToken) => {
+    const forgotCollection = db().collection("Forgot");
+    userId = await forgotCollection.findOne({token: forgotToken});
+    if(userId) {
+        return userId.userId;
+    }
+    else {
+        return null;
+    }
+}
+
+exports.updateUserPassword = async(userId,newPassword) => {
+    const userCollection = db().collection("Users");
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(newPassword, salt);
+    await userCollection.updateOne({_id: ObjectId(userId)},{$set:{password: hash}});
 }

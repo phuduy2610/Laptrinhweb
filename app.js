@@ -20,9 +20,13 @@ const searchRouter = require('./routes/search');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const logoutRouter = require('./routes/logout');
+const validateRouter = require('./routes/validate');
+const forgotRouter = require('./routes/forgot');
 const { index } = require('./controllers/indexController');
 const { register } = require('./controllers/userController');
 
+// api
+const userApiRouter = require('./routes/api/user');
 
 
 const app = express();
@@ -58,6 +62,23 @@ app.use(function(req,res,next){
   next();
 })
 
+// middleware check loggedin
+
+function checkAcessible(req, res, next) {
+  if (req.user) {
+      next();
+  } else {
+      res.redirect('/login');
+  }
+}
+
+function isLogged(req, res, next) {
+  if (req.user) {
+      res.redirect('/user');
+  } else {
+      next();
+  }
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -72,13 +93,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/user', userRouter);
+app.use('/user',checkAcessible,userRouter);
 app.use('/shop',shopRouter);
 app.use('/search',searchRouter);
-app.use('/login',loginRouter);
-app.use('/register',registerRouter);
-app.use('/logout',logoutRouter);
-
+app.use('/login',isLogged,loginRouter);
+app.use('/register',isLogged,registerRouter);
+app.use('/logout',checkAcessible,logoutRouter);
+app.use('/api/user',userApiRouter);
+app.use('/validate',validateRouter);
+app.use('/forgot',isLogged,forgotRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
