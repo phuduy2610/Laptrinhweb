@@ -39,7 +39,7 @@ exports.edit = async (req, res, next) => {
         })
     }
     let flag = 0;
-
+    console.log(__dirname + '/../public/images/' + imageName);
     if (coverImage && coverImage.size > 0) {
         await cloudinary.uploader.upload(__dirname + '/../public/images/' + imageName, { public_id: formfields.name.replace(/ +/g, "") + "coverImg", folder: 'GameStore/Users', unique_filename: false, overwrite: true, "width": 265, "height": 265 })
             .then(function (image) {
