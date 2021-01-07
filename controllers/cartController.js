@@ -39,5 +39,20 @@ exports.removeproduct = async(req,res,next)=>{
 exports.checkout = async(req,res,next)=>{
     let cart = new Cart(req.session.cart);
     //TODO: add user id here
+    //render view form 
+    //CartModel.addnewcart(cart);
+    if(!req.session.cart){
+        return res.render("cart/cart",{products:null});
+    }
+    res.render('cart/payment',{products: cart.generateArray(),totalPrice:cart.totalPrice,totalQty:cart.totalQty});
+}
+
+exports.complete = async(req,res,next)=>{    
+    console.log(req.body);
+    let cart = new Cart(req.session.cart);
+    cart.delivery_method=req.body.delivery_method;
+    cart.firstname = req.body.firstname;
+    cart.lastname = req.body.lastname;
+    cart.address = req.body.address;
     CartModel.addnewcart(cart);
 }
