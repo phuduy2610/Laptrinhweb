@@ -4,8 +4,12 @@ const { ObjectId } = require('mongodb');
 
 exports.index = async (req, res, next) => {
     const limit = 8;
+    let games;
     const current_page = parseInt(req.query.page) || 1;
-    const games = await GameModel.getbypage(current_page, limit);
+    if(typeof req.query.params == "undefined") {
+        games = await GameModel.getbypage(current_page, limit);
+    }
+    
     const GameCount = await GameModel.getGameCount();
     const stCount = await GameModel.getGameCountByGenre("Strategy");
     const fiCount = await GameModel.getGameCountByGenre("Fighting");

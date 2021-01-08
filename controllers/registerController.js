@@ -24,7 +24,7 @@ exports.addUser = async (req, res, next) => {
 
 
         // link: to change
-        url = "http://" + req.get('host') + "/validate/" + validateCode;
+        url = "http://" + req.get('host') + "/validate?code=" + validateCode;
 
         // send email
         let transporter = nodemailer.createTransport({

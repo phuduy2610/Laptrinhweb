@@ -149,13 +149,15 @@ exports.addValidationToken = async(validationToken,userId) => {
 
 // user kích hoạt tài khoản
 exports.validateUserAccount = async(validationToken) => {
+    let result = 0;
     const validateCollection = db().collection('Validation');
     const userCollection = db().collection('Users');
     const user = await validateCollection.findOne({token: validationToken});
     if(user) {
         await userCollection.updateOne({_id: ObjectId(user.userId)},{$set:{status: true}});
-        await validateCollection.deleteOne({token: validationToken});
+        result = await validateCollection.deleteOne({token: validationToken});
     }
+    return result.deletedCount;
 }
 
 exports.getUser = async(userId) => {

@@ -13,12 +13,7 @@ $("document").ready(function()
 		e.preventDefault();
 		if(value!='')
 		{
-			$.ajax({
-				type: 'get',
-				data: $('.sb-search-input').serialize(),
-				success: function() {
-					window.location = '/search?keyword=' + value;
-				 }});
+			window.location = '/search?keyword=' + value;
 		}
 		else
 		{

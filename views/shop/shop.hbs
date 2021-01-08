@@ -1,3 +1,4 @@
+<script src="../javascripts/shop.js"></script>
 <div class="main">
     <div class="shop_top">
         <div class="container-fluid">
@@ -6,72 +7,119 @@
                     <div class="container-fluid">
                         <div class="row d-flex justify-content-center">
                             <div class="col-12">
-                                <div class="card">
-                                    <article class="filter-group">
-                                        <header class="card-header"> <a href="#" data-toggle="collapse"
-                                                data-target="#collapse_aside1" data-abc="true" aria-expanded="false"
-                                                class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                                                <h6 class="shop-category-title">Categories </h6>
-                                            </a> </header>
-                                        <div class="filter-content collapse" id="collapse_aside1" style="">
-                                            <div class="card-body">
-                                                <ul class="list-menu">
-                                                    <li><a href="/search/Strategy" data-abc="true">Strategy
-                                                            ({{Count.strategy}})</a></li>
-                                                    <li><a href="/search/RPG" data-abc="true">RPG ({{Count.rpg}})</a>
-                                                    </li>
-                                                    <li><a href="/search/Fighting" data-abc="true">Fighting
-                                                            ({{Count.fighting}})</a></li>
-                                                    <li><a href="/search/Shooter" data-abc="true">Shooter
-                                                            ({{Count.shooter}})</a></li>
-                                                </ul>
+                                <form id="filterForm" method="GET">
+                                    <div class="card">
+                                        <article class="filter-group">
+                                            <header class="card-header"> <a href="#" data-toggle="collapse"
+                                                    data-target="#collapse_aside1" data-abc="true" aria-expanded="false"
+                                                    class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
+                                                    <h6 class="shop-category-title">Categories </h6>
+                                                </a> </header>
+                                            <div class="filter-content collapse" id="collapse_aside1" style="">
+                                                <div class="card-body">
+                                                    {{!-- <ul class="list-menu">
+                                                        <li><a href="/search?category=Strategy" data-abc="true">Strategy
+                                                                ({{Count.strategy}})</a></li>
+                                                        <li><a href="/search?category=RPG" data-abc="true">RPG
+                                                                ({{Count.rpg}})</a>
+                                                        </li>
+                                                        <li><a href="/search?category=Fighting" data-abc="true">Fighting
+                                                                ({{Count.fighting}})</a></li>
+                                                        <li><a href="/search?category=Shooter" data-abc="true">Shooter
+                                                                ({{Count.shooter}})</a></li>
+                                                    </ul> --}}
+                                                    <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="strategy" value="true">
+                                                        <div class="custom-control-label">Strategy({{Count.strategy}})
+                                                        </div>
+                                                    </label> <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="rpg" value="true">
+                                                        <div class="custom-control-label">RPG({{Count.rpg}})</div>
+                                                    </label> <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="fighting" value="true">
+                                                        <div class="custom-control-label">Fighting({{Count.fighting}})
+                                                        </div>
+                                                    </label> <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="shooter" value="true">
+                                                        <div class="custom-control-label">Shooter({{Count.shooter}})
+                                                        </div>
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </article>
-                                    <article class="filter-group">
-                                        <header class="card-header"> <a href="#" data-toggle="collapse"
-                                                data-target="#collapse_aside2" data-abc="true" aria-expanded="false"
-                                                class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
-                                                <h6 class="shop-category-title">Price </h6>
-                                            </a> </header>
-                                        <div class="filter-content collapse" id="collapse_aside2" style="">
-                                            <div class="card-body"> <input type="range" class="custom-range" min="0"
-                                                    max="100" name="">
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6"> <label>Min</label> <input
-                                                            class="form-control" placeholder="$0" type="number"> </div>
-                                                    <div class="form-group text-right col-md-6"> <label>Max</label>
-                                                        <input class="form-control" placeholder="$1,0000" type="number">
-                                                    </div>
-                                                </div> <a href="#"
-                                                    class="highlight-button btn btn-medium button xs-margin-bottom-five"
-                                                    data-abc="true">Apply Now</a>
+                                        </article>
+                                        <article class="filter-group">
+                                            <header class="card-header"> <a href="#" data-toggle="collapse"
+                                                    data-target="#collapse_aside2" data-abc="true" aria-expanded="false"
+                                                    class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
+                                                    <h6 class="shop-category-title">Price </h6>
+                                                </a> </header>
+                                            <div class="filter-content collapse" id="collapse_aside2" style="">
+                                                <div class="card-body">
+                                                    {{!-- <input type="range" class="custom-range" min="0" max="100"
+                                                        name=""> --}}
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6"> <label>Min ($)</label> <input
+                                                                class="form-control" placeholder="0" type="number" min="0" name="min">
+                                                        </div>
+                                                        <div class="form-group text-right col-md-6"> <label>Max ($)
+                                                            </label>
+                                                            <input class="form-control" placeholder="0" type="number" min="0" name="max">
+                                                        </div>
+                                                        {{!--
+                                                    </div> <a href="#"
+                                                        class="highlight-button btn btn-medium button xs-margin-bottom-five"
+                                                        data-abc="true">Apply Now</a> --}}
+                                                </div>
                                             </div>
-                                        </div>
-                                    </article>
-                                    <article class="filter-group">
-                                        <header class="card-header"> <a href="#" data-toggle="collapse"
-                                                data-target="#collapse_aside4" data-abc="true" class="collapsed"
-                                                aria-expanded="false"> <i class="icon-control fa fa-chevron-down"></i>
-                                                <h6 class="shop-category-title">Rating </h6>
-                                            </a> </header>
-                                        <div class="filter-content collapse" id="collapse_aside4" style="">
-                                            <div class="card-body"> <label class="custom-control"> <input
-                                                        type="checkbox" checked="" class="custom-control-input">
-                                                    <div class="custom-control-label">Better </div>
-                                                </label> <label class="custom-control"> <input type="checkbox"
-                                                        checked="" class="custom-control-input">
-                                                    <div class="custom-control-label">Best </div>
-                                                </label> <label class="custom-control"> <input type="checkbox"
-                                                        checked="" class="custom-control-input">
-                                                    <div class="custom-control-label">Good</div>
-                                                </label> <label class="custom-control"> <input type="checkbox"
-                                                        checked="" class="custom-control-input">
-                                                    <div class="custom-control-label">Not good</div>
-                                                </label> </div>
-                                        </div>
-                                    </article>
-                                </div>
+                                        </article>
+                                        <article class="filter-group">
+                                            <header class="card-header"> <a href="#" data-toggle="collapse"
+                                                    data-target="#collapse_aside3" data-abc="true" class="collapsed"
+                                                    aria-expanded="false"> <i
+                                                        class="icon-control fa fa-chevron-down"></i>
+                                                    <h6 class="shop-category-title">System requirement </h6>
+                                                </a> </header>
+                                            <div class="filter-content collapse" id="collapse_aside3" style="">
+                                                <div class="card-body">
+                                                    <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="low" value="true">
+                                                        <div class="custom-control-label">Low </div>
+                                                    </label> <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="medium" value="true">
+                                                        <div class="custom-control-label">Medium </div>
+                                                    </label> <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="high" value="true">
+                                                        <div class="custom-control-label">High</div>
+                                                    </label> <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="ultra" value="true">
+                                                        <div class="custom-control-label">Ultra</div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <article class="filter-group">
+                                            <header class="card-header"> <a href="#" data-toggle="collapse"
+                                                    data-target="#collapse_aside4" data-abc="true" class="collapsed"
+                                                    aria-expanded="false"> <i
+                                                        class="icon-control fa fa-chevron-down"></i>
+                                                    <h6 class="shop-category-title">Mode </h6>
+                                                </a> </header>
+                                            <div class="filter-content collapse" id="collapse_aside4" style="">
+                                                <div class="card-body">
+                                                    <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="single" value="true">
+                                                        <div class="custom-control-label">Singleplayer </div>
+                                                    </label> <label class="custom-control">
+                                                        <input type="checkbox" class="custom-control-input" name="multi" value="true">
+                                                        <div class="custom-control-label">Multiplayer </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <button class="submit highlight-button btn btn-medium button xs-margin-bottom-five"
+                                            data-abc="true">Apply Now</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -90,7 +138,7 @@
                                 <div class="shop_desc">
                                     <h3><a href="shop/{{id}}">{{title}}</a></h3>
                                     {{!-- <span class="reducedfrom">{{basePrice}}</span> --}}
-                                    <span class="actual">{{basePrice}}</span><br>
+                                    <span class="actual">{{basePrice}}$</span><br>
                                     <ul class="buttons">
                                         <li class="cart"><a href="shop/add-to-cart/{{id}}"
                                                 class="trigger_popup_fricc">Add To Cart</a></li>
@@ -134,19 +182,19 @@
                 <ul class="pagination">
                     <div class="pagination pagination-centered">
                         {{#paginate pagination type="first"}}
-                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">First</a></li>
+                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}{{sub}}{{n}}">First</a></li>
                         {{/paginate}}
                         {{#paginate pagination type="previous"}}
-                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Prev</a></li>
+                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}{{sub}}{{n}}">Prev</a></li>
                         {{/paginate}}
                         {{#paginate pagination type="middle" limit="3"}}
-                        <li {{#if active}}class="active" {{/if}}><a href="{{parent}}page={{n}}">{{n}}</a></li>
+                        <li {{#if active}}class="active" {{/if}}><a href="{{parent}}{{sub}}{{n}}">{{n}}</a></li>
                         {{/paginate}}
                         {{#paginate pagination type="next"}}
-                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Next</a></li>
+                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}{{sub}}{{n}}">Next</a></li>
                         {{/paginate}}
                         {{#paginate pagination type="last"}}
-                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}page={{n}}">Last</a></li>
+                        <li {{#if disabled}}class="disabled" {{/if}}><a href="{{parent}}{{sub}}{{n}}">Last</a></li>
                         {{/paginate}}
                     </div>
                 </ul>
