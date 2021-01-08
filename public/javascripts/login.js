@@ -10,7 +10,12 @@ $('document').ready(function () {
                 if(data.respond) {
                     window.location.href = "/user";
                 } else {
-                    $("#loginAlert").addClass("failedLogin").html("Incorrect email or password.");
+                    if(data.redirect != null) {
+                        window.location.href = data.redirect;
+                    } else 
+                    {
+                        $("#loginAlert").addClass("failedLogin").html("Incorrect email or password.");
+                    }
                 }
             }
         })

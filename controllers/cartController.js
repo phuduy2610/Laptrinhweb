@@ -54,5 +54,6 @@ exports.complete = async(req,res,next)=>{
     cart.firstname = req.body.firstname;
     cart.lastname = req.body.lastname;
     cart.address = req.body.address;
+    cart.userId = res.locals.user._id;
     CartModel.addnewcart(cart);
 }

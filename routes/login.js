@@ -19,7 +19,13 @@ router.post('/', function (req, res, next) {
         if (err) {
           console.log(err);
         }
-        res.send({respond: 1}); // redirect after logged in
+        if(req.session.redirect != null) {
+          res.send({redirect : req.session.redirect});
+        }
+        else
+        {
+          res.send({respond: 1}); // redirect after logged in
+        }
       });
     })
       (req, res, next);
