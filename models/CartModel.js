@@ -17,20 +17,7 @@ exports.listofproductsameuser = async (user_id) => {
     return carts;
 }
 
-//Thêm 1 cart mới hoàn toàn TH chưa tồn tại cart nào cho user đó
-exports.addnewcart= async(user_id)=>{
-    const cartcollection = db().collection('Carts');
-    const new_carts ={
-        totalQty:0,
-        userId:user_id,
-        gameId:""
-    }
-    const result = await cartcollection.insertOne(new_carts);
-    console.log(`New listing created with the following id: ${result.insertedId}`);
-}
-
-
-exports.addnewproduct= async(cart_info)=>{
+exports.addnewcart= async(cart_info)=>{
     const cartcollection = db().collection('Carts');
     const result = await cartcollection.insertOne(cart_info);
     console.log(`New listing created with the following id: ${result.insertedId}`);
@@ -50,3 +37,4 @@ exports.updateproduct = async(user_id,game_id,updatedInfo)=>{
     console.log(`${result.matchedCount} document(s) matched the query criteria.`);
     console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
+

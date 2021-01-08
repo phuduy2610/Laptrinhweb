@@ -60,6 +60,7 @@ app.use(passport.session());
 // pass req.user to res.locals
 app.use(function(req,res,next){
   res.locals.user = req.user;
+  res.locals.session = req.session;
   next();
 })
 
