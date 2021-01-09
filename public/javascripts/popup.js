@@ -1,6 +1,6 @@
-$(window).load(function () {
+$("document").ready(function () {
     $(".trigger_popup_fricc").click(function(event){
-        event.preventDefault();
+        //event.preventDefault();
         let quantity = $("#quantity").val();
         console.log('quantity',quantity);
         $('.hover_bkgr_fricc').show();
