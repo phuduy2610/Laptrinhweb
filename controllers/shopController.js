@@ -4,13 +4,14 @@ let Cart = require('../models/localCartModel');
 const { ObjectId } = require('mongodb');
 
 exports.index = async (req, res, next) => {
+    const message = req.flash('message');
+    console.log('message',message);
     const limit = 8;
     let games;
     const current_page = parseInt(req.query.page) || 1;
     if(typeof req.query.params == "undefined") {
         games = await GameModel.getbypage(current_page, limit);
     }
-    
     const GameCount = await GameModel.getGameCount();
     const stCount = await GameModel.getGameCountByGenre("Strategy");
     const fiCount = await GameModel.getGameCountByGenre("Fighting");
@@ -27,7 +28,7 @@ exports.index = async (req, res, next) => {
         rpg: rpgCount,
         shooter: shCount
     }
-    res.render('shop/shop', { games, pagination, Count });
+    res.render('shop/shop', { games, pagination, Count,message });
 };
 
 exports.details = async (req, res, next) => {
@@ -52,5 +53,6 @@ exports.addtocartmany = async(req,res,next)=>{
     const product = await GameModel.getonebyid(req.params.id);
     cart.add(product,product.id,parseInt(req.body.quantity));
     req.session.cart = cart;
-    res.redirect('/shop');
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    res.redirect('back');
 }

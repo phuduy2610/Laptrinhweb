@@ -1,4 +1,13 @@
 <script src="../javascripts/shop.js"></script>
+{{#if message}}
+<div class="row justify-content-md-center">
+    <div class="col-md-6">
+        <div class="alert alert-success" role="alert">
+            <p class="text-center">{{message}}</p>
+        </div>
+    </div>
+</div>
+{{/if}}
 <div class="main">
     <div class="shop_top">
         <div class="container-fluid">
@@ -29,18 +38,22 @@
                                                                 ({{Count.shooter}})</a></li>
                                                     </ul> --}}
                                                     <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="strategy" value="true">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            name="strategy" value="true">
                                                         <div class="custom-control-label">Strategy({{Count.strategy}})
                                                         </div>
                                                     </label> <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="rpg" value="true">
+                                                        <input type="checkbox" class="custom-control-input" name="rpg"
+                                                            value="true">
                                                         <div class="custom-control-label">RPG({{Count.rpg}})</div>
                                                     </label> <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="fighting" value="true">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            name="fighting" value="true">
                                                         <div class="custom-control-label">Fighting({{Count.fighting}})
                                                         </div>
                                                     </label> <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="shooter" value="true">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            name="shooter" value="true">
                                                         <div class="custom-control-label">Shooter({{Count.shooter}})
                                                         </div>
                                                     </label>
@@ -59,11 +72,13 @@
                                                         name=""> --}}
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6"> <label>Min ($)</label> <input
-                                                                class="form-control" placeholder="0" type="number" min="0" name="min">
+                                                                class="form-control" placeholder="0" type="number"
+                                                                min="0" name="min">
                                                         </div>
                                                         <div class="form-group text-right col-md-6"> <label>Max ($)
                                                             </label>
-                                                            <input class="form-control" placeholder="0" type="number" min="0" name="max">
+                                                            <input class="form-control" placeholder="0" type="number"
+                                                                min="0" name="max">
                                                         </div>
                                                         {{!--
                                                     </div> <a href="#"
@@ -82,16 +97,20 @@
                                             <div class="filter-content collapse" id="collapse_aside3" style="">
                                                 <div class="card-body">
                                                     <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="low" value="true">
+                                                        <input type="checkbox" class="custom-control-input" name="low"
+                                                            value="true">
                                                         <div class="custom-control-label">Low </div>
                                                     </label> <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="medium" value="true">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            name="medium" value="true">
                                                         <div class="custom-control-label">Medium </div>
                                                     </label> <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="high" value="true">
+                                                        <input type="checkbox" class="custom-control-input" name="high"
+                                                            value="true">
                                                         <div class="custom-control-label">High</div>
                                                     </label> <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="ultra" value="true">
+                                                        <input type="checkbox" class="custom-control-input" name="ultra"
+                                                            value="true">
                                                         <div class="custom-control-label">Ultra</div>
                                                     </label>
                                                 </div>
@@ -107,16 +126,19 @@
                                             <div class="filter-content collapse" id="collapse_aside4" style="">
                                                 <div class="card-body">
                                                     <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="single" value="true">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            name="single" value="true">
                                                         <div class="custom-control-label">Singleplayer </div>
                                                     </label> <label class="custom-control">
-                                                        <input type="checkbox" class="custom-control-input" name="multi" value="true">
+                                                        <input type="checkbox" class="custom-control-input" name="multi"
+                                                            value="true">
                                                         <div class="custom-control-label">Multiplayer </div>
                                                     </label>
                                                 </div>
                                             </div>
                                         </article>
-                                        <button class="submit highlight-button btn btn-medium button xs-margin-bottom-five"
+                                        <button
+                                            class="submit highlight-button btn btn-medium button xs-margin-bottom-five"
                                             data-abc="true">Apply Now</button>
                                     </div>
                                 </form>

@@ -30,10 +30,13 @@ exports.checkout = async(req,res,next)=>{
 exports.complete = async(req,res,next)=>{    
     console.log(req.body);
     let cart = new Cart(req.session.cart);
-    cart.delivery_method=req.body.delivery_method;
-    cart.firstname = req.body.firstname;
-    cart.lastname = req.body.lastname;
+    cart.delivery_method=req.body.optradio;
+    cart.firstname = req.body.firstName;
+    cart.lastname = req.body.lastName;
     cart.address = req.body.address;
     cart.userId = res.locals.user._id;
     CartModel.addnewcart(cart);
+    req.session.cart = null;
+    req.flash('message','You have checked out successfully !');
+    res.redirect('/shop');
 }

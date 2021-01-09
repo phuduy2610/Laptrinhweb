@@ -10,7 +10,7 @@ const hbs = require('hbs');
 const paginate = require('dontfinthis');
 const session = require('express-session');
 const passport = require('./passport');
-
+const flash = require('connect-flash');
 
 
 const indexRouter = require('./routes/index');
@@ -86,7 +86,7 @@ app.use(function(req,res,next){
   res.locals.session = req.session;
   next();
 })
-
+app.use(flash());
 // middleware check loggedin
 
 function checkAcessible(req, res, next) {
