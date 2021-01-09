@@ -3,13 +3,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
- 					<img src="{{user.cover}}" class="img-responsive" alt=""/>
+					<img src="{{user.cover}}" class="img-responsive" alt="" />
 				</div>
 				<div class="col-md-5">
-					<p class="m_8">Name: 	<b>{{user.name}}</b></p>
-					<p class="m_8">Email: 	<b>{{user.email}}</b></p>
-					<p class="m_8">Birthday:	<b>{{user.birthday}}</b></p>
-					<p class="m_8">Phone Number:	<b>{{user.phone}}</b></p>
+					<p class="m_8">Name: <b>{{user.name}}</b></p>
+					<p class="m_8">Email: <b>{{user.email}}</b></p>
+					<p class="m_8">Birthday: <b>{{user.birthday}}</b></p>
+					<p class="m_8">Phone Number: <b>{{user.phone}}</b></p>
 
 					{{!-- <div class="address"> --}}
 
@@ -28,16 +28,57 @@
 						</div>
 						<div class="to">
 							<input type="text" name="phone" class="text" value="{{user.phone}}">
-							<input type="file" name="coverImage"  class="text" value="Image Link" >
-							<div class="form-submit">
+							<input type="file" name="coverImage" class="text" value="Image Link">
+							<div class="form-submit pt-5">
 								<input name="submit" type="submit" id="submit" value="Submit Edit"><br>
 							</div>
-								<a href="/logout" class="btn btn-primary">Logout</a>
+							<a href="/logout" class="btn btn-warning " style="margin-left:2%;margin-top:4%">Logout</a>
 						</div>
 						<div class="clear"></div>
 					</form>
 				</div>
 			</div>
+			{{#if orders}}
+			<div class="col-8 pt-5">
+				<h1 class="display-4">My Orders</h1>
+				{{#eachData  orders}}
+				<div class="panel panel-primary mt-5">
+					<div class="panel-heading">Cart #{{math index "+" 1 }}</div>
+					<div class="panel-body">
+						<ul class="list-group">
+							<li class="list-group-item">
+								Full Name: {{firstname}} {{lastname}}<br> 
+								Address: {{address}} |  Delivery Method: {{delivery_method}}
+							</li>
+						</ul>
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Title</th>
+									<th scope="col">Quantity</th>
+									<th scope="col">Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								{{#each items}}
+								<tr>
+									<td>{{item.title}}</td>
+									<td>{{qty}}</td>
+									<td>{{price}} $ </td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+
+					</div>
+					<div class="panel-footer">
+						<strong>Total Price: {{totalPrice}}$ </strong>
+					</div>
+				</div>
+				{{/eachData}}
+			</div>
+			{{/if}}
 		</div>
+
 	</div>
 </div>

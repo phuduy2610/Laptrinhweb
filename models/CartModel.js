@@ -10,7 +10,7 @@ exports.list = async () => {
 }
 
 //Trả về tất cả các cart có cùng chung user
-exports.listofproductsameuser = async (user_id) => {
+exports.listofcartssameuser = async (user_id) => {
     const cartcollection = db().collection('Carts');
     const carts = await cartcollection.find({userId: ObjectId(user_id)}).toArray();
     console.dir(carts);

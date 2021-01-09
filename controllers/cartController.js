@@ -9,23 +9,6 @@ exports.index = async (req, res, next) => {
     }
     let cart = new Cart(req.session.cart);
     res.render("cart/cart",{products: cart.generateArray(),totalPrice:cart.totalPrice,totalQty:cart.totalQty});
-
-//     let games_list=[];
-//     let sum_price = 0;
-//     if(res.locals.user){
-//     const products = await CartModel.listofproductsameuser(res.locals.user._id);
-//     for(i=0;i<products.length;i++){
-//         const game = await GameModel.getonebyid(products[i].gameId);
-//         const price =parseInt(products[i].qty)*parseInt(game.basePrice.replace(/[^\d.-]/g, ''));
-//         game.qty = products[i].qty;
-//         game.basePrice = price;
-//         games_list.push(game);
-//     }
-//     for(i=0;i<games_list.length;i++){
-//         sum_price += games_list[i].basePrice;
-//     }
-// }
-
 }
 
 exports.removeproduct = async(req,res,next)=>{
@@ -38,9 +21,6 @@ exports.removeproduct = async(req,res,next)=>{
 
 exports.checkout = async(req,res,next)=>{
     let cart = new Cart(req.session.cart);
-    //TODO: add user id here
-    //render view form 
-    //CartModel.addnewcart(cart);
     if(!req.session.cart){
         return res.render("cart/cart",{products:null});
     }

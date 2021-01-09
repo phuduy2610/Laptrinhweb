@@ -49,6 +49,29 @@ hbs.registerHelper( "when",function(operand_1, operator, operand_2, options) {
   if (result) return options.fn(this);
   else  return options.inverse(this);
 });
+hbs.registerHelper('eachData', function(context, options) {
+  var fn = options.fn, inverse = options.inverse, ctx;
+  var ret = "";
+
+  if(context && context.length > 0) {
+    for(var i=0, j=context.length; i<j; i++) {
+      ctx = Object.create(context[i]);
+      ctx.index = i;
+      ret = ret + fn(ctx);
+    }
+  } else {
+    ret = inverse(this);
+  }
+  return ret;
+}); 
+
+hbs.registerHelper("math", function(lvalue, operator, rvalue, options) {
+lvalue = parseFloat(lvalue);
+rvalue = parseFloat(rvalue);
+return {
+    "+": lvalue + rvalue
+}[operator];
+});
 
 //middleware for searching game like "%...%"
 hbs.registerHelper("paginate", paginate);

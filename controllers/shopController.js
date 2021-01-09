@@ -52,5 +52,4 @@ exports.addtocartmany = async(req,res,next)=>{
     const product = await GameModel.getonebyid(req.params.id);
     cart.add(product,product.id,parseInt(req.body.quantity));
     req.session.cart = cart;
-    res.redirect('/shop');
 }
