@@ -68,6 +68,7 @@ exports.index = async (req, res, next) => {
 exports.details = async (req, res, next) => {
     const game = await GameModel.getonebyid(req.params.id);
     const games = await GameModel.getbylimitsamegenre(4, game.category, game.title);
+    await GameModel.increaseViewById(req.params.id);
     res.render('shop/single', { game, games });
 };
 

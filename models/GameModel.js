@@ -378,3 +378,10 @@ exports.getGameCountByFilterWithKeyword = async(params) => {
     });
     return count;
 }
+
+exports.increaseViewById = async(gameId) => {
+    const gamecollection = db().collection('Our games');
+    game = await gamecollection.findOne({_id: ObjectId(gameId)});
+    let count = parseInt(game.view) + 1;
+    await gamecollection.updateOne({_id: ObjectId(gameId)},{ $set: {view: count}});
+}
