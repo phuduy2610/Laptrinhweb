@@ -71,21 +71,13 @@ exports.details = async (req, res, next) => {
     res.render('shop/single', { game, games });
 };
 
-// exports.addtocart = async (req, res, next) => {
-//     let cart = new Cart(req.session.cart ? req.session.cart : {});
-//     const product = await GameModel.getonebyid(req.params.id);
-//     cart.add(product,product.id,1);
-//     req.session.cart = cart;
-//     console.log('cart:',req.session.cart);
-//     res.redirect('/shop');
-// }
 
 exports.addtocartmany = async(req,res,next)=>{
     console.log('id:',req.params.id);
     console.log('quantity',req.body.quantity);
     let cart = new Cart(req.session.cart ? req.session.cart : {});
     const product = await GameModel.getonebyid(req.params.id);
-    cart.add(product,product.id,parseInt(req.body.quantity));
+    cart.add(product,product._id,parseInt(req.body.quantity));
     req.session.cart = cart;
     await new Promise(resolve => setTimeout(resolve, 1000));
     res.redirect('back');

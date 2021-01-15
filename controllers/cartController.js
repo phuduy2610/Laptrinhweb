@@ -20,7 +20,6 @@ exports.removeproduct = async(req,res,next)=>{
 }
 
 exports.checkout = async(req,res,next)=>{
-    req.session.cart = {};
     let cart = new Cart(req.session.cart);
     if(!req.session.cart){
         return res.render("cart/cart",{products:null});
@@ -29,7 +28,7 @@ exports.checkout = async(req,res,next)=>{
 }
 
 exports.complete = async(req,res,next)=>{    
-    console.log(req.body);
+    console.log('local:',req.session.cart);
     let cart = new Cart(req.session.cart);
     cart.delivery_method=req.body.optradio;
     cart.firstname = req.body.firstName;
