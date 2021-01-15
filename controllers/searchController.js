@@ -1,68 +1,60 @@
 const GameModel = require('../models/gameModel');
 
 exports.index = async (req, res, next) => {
-    
-    let queryString = req.originalUrl;
-    let currentPage;
+    const limit = 8;
     let games;
     let GameCount;
-    if(req.query.keyword!=null && req.query.page!=null)
-    {
-        currentPage = req.query.page;
-        queryString = req.originalUrl.replace(/&page=/g,"")
-        queryString = queryString.substring(0,queryString.length-1);
-    }
-    else
-    {
-        currentPage = 1;
-    }
-    const limit = 8 ;
-    const current_page = parseInt(currentPage) || 1;
-    if(req.query.keyword!=null) {
+    let pagination = {};
+    let queryString;
+    let query = JSON.parse(JSON.stringify(req.query));
+    // rerender selection in view
+    if(query.genre !=null ) {
+        if(!Array.isArray(query.genre)) {
+            query.genre = [query.genre];
+        }
+        query.genre = query.genre.reduce(function(o,val) { o[val] = "true"; return o;}, {});
+    } 
+    if(query.spec !=null) {
+        if(!Array.isArray(query.spec)) {
+            query.spec = [query.spec];
+        }
+        query.spec = query.spec.reduce(function(o,val) { o[val] = "true"; return o;}, {});
+    } 
+    // get page number 
+    const current_page = parseInt(req.query.page) || 1;
+    // check if have  filter or not 
+    if(Object.keys(req.query).length === 1 || (Object.keys(req.query).length === 2 && req.query.page != null)){
         games = await GameModel.getbypagesamename(current_page,limit,req.query.keyword);
         GameCount = await GameModel.getGameCountGetsamename(req.query.keyword);
+    } else {
+        let temp = JSON.parse(JSON.stringify(req.query));
+        //get querystring before page
+        queryString = req.originalUrl;
+        if(req.query.page != null) {
+            queryString = req.originalUrl.substring(0,req.originalUrl.length-1);
+        }
+        queryString = queryString.replace(/&page=/g,"");
+        queryString = queryString.substring(0,queryString.length);
+        //get games and game count
+        games = await GameModel.getByFilterWithKeyword(req.query,current_page, limit);
+        GameCount = await GameModel.getGameCountByFilterWithKeyword(temp);
+        //get query string before page
+        pagination.parentSub = queryString;
     }
-
-    // đếm số lượng game theo thể loại
+    
     const stCount = await GameModel.getGameCountByGenre("Strategy");
     const fiCount = await GameModel.getGameCountByGenre("Fighting");
     const rpgCount = await GameModel.getGameCountByGenre("RPG");
     const shCount = await GameModel.getGameCountByGenre("Shooter");
-
     //Page
-    const pagination = {
-        page : current_page ,
-        pageCount : Math.ceil(parseInt(GameCount) / limit),
-        parentSub: queryString
-    }
+    pagination.page = current_page;
+    pagination.pageCount = Math.ceil(parseInt(GameCount) / limit);
+    
     const Count = {
-        strategy : stCount, 
-        fighting : fiCount,  
-        rpg : rpgCount, 
-        shooter : shCount
+        strategy: stCount,
+        fighting: fiCount,
+        rpg: rpgCount,
+        shooter: shCount
     }
-    res.render('shop/shop', {games, pagination, Count });
+    res.render('shop/shop', { games, pagination, Count, query });
 };
-
-// exports.categories = async (req, res, next) => {
-//     genre = req.route.path.substring(1,req.route.path.length);
-//     const limit = 8 ;
-//     const current_page = parseInt(req.query.page) || 1;
-//     const games = await GameModel.getbypagesamegenre(current_page,limit,genre);
-//     const GameCount = await GameModel.getGameCountByGenre(genre);
-//     const stCount = await GameModel.getGameCountByGenre("Strategy");
-//     const fiCount = await GameModel.getGameCountByGenre("Fighting");
-//     const rpgCount = await GameModel.getGameCountByGenre("RPG");
-//     const shCount = await GameModel.getGameCountByGenre("Shooter");
-//     const pagination = {
-//         page : current_page ,
-//         pageCount : Math.ceil(parseInt(GameCount) / limit)
-//     }
-//     const Count = {
-//         strategy : stCount, 
-//         fighting : fiCount,  
-//         rpg : rpgCount, 
-//         shooter : shCount
-//     }
-//     res.render('shop/shop', {games, pagination, Count });
-//  };

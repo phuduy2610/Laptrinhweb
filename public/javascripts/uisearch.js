@@ -10,10 +10,11 @@ $("document").ready(function()
 	})
 	$("#search-form").submit(function(e){
 		let value = $(".sb-search-input").val();
+		let query = $("#filterForm").serialize();
 		e.preventDefault();
 		if(value!='')
 		{
-			window.location = '/search?keyword=' + value;
+			window.location = '/search?keyword=' + value + "&" + query;
 		}
 		else
 		{
