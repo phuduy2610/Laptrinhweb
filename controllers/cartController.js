@@ -20,6 +20,7 @@ exports.removeproduct = async(req,res,next)=>{
 }
 
 exports.checkout = async(req,res,next)=>{
+    req.session.cart = {};
     let cart = new Cart(req.session.cart);
     if(!req.session.cart){
         return res.render("cart/cart",{products:null});

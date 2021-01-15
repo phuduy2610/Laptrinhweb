@@ -22,12 +22,12 @@
 				<div class="col-md-12 contact">
 					<form action="/user" method="post" enctype="multipart/form-data">
 						<div class="to">
-							<input type="text" name="name" class="text" value="{{user.name}}">
-							<input type="text" name="email" class="text" value="{{user.email}}">
-							<input type="text" name="birthday" class="text" value="{{user.birthday}}">
+							<input type="text" placeholder="User name" name="name" class="text" value="{{user.name}}" required>
+							<input type="text" placeholder="Email" name="email" class="text" value="{{user.email}}" required>
+							<input type="text" placeholder="Birthday" name="birthday" class="text" value="{{user.birthday}}" required>
 						</div>
 						<div class="to">
-							<input type="text" name="phone" class="text" value="{{user.phone}}">
+							<input type="text" placeholder="Phone number" name="phone" class="text" value="{{user.phone}}" required>
 							<input type="file" name="coverImage" class="text" value="Image Link">
 							<div class="form-submit pt-5">
 								<input name="submit" type="submit" id="submit" value="Submit Edit"><br>
