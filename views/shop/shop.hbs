@@ -1,4 +1,13 @@
 <script src="../javascripts/shop.js"></script>
+{{#if message}}
+<div class="row justify-content-md-center">
+    <div class="col-md-6">
+        <div class="alert alert-success" role="alert">
+            <p class="text-center">{{message}}</p>
+        </div>
+    </div>
+</div>
+{{/if}}
 <div class="main">
     <div class="shop_top">
         <div class="container-fluid">

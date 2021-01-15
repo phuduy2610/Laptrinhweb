@@ -5,6 +5,8 @@ const { ObjectId } = require('mongodb');
 const e = require('express');
 
 exports.index = async (req, res, next) => {
+    const message = req.flash('message');
+    console.log('message',message);
     const limit = 8;
     let games;
     let GameCount;
@@ -60,7 +62,7 @@ exports.index = async (req, res, next) => {
         rpg: rpgCount,
         shooter: shCount
     }
-    res.render('shop/shop', { games, pagination, Count, query });
+    res.render('shop/shop', { games, pagination, Count, query, messeage });
 };
 
 exports.details = async (req, res, next) => {
@@ -85,5 +87,6 @@ exports.addtocartmany = async(req,res,next)=>{
     const product = await GameModel.getonebyid(req.params.id);
     cart.add(product,product.id,parseInt(req.body.quantity));
     req.session.cart = cart;
-    res.redirect('/shop');
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    res.redirect('back');
 }
