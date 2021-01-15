@@ -62,7 +62,7 @@ exports.index = async (req, res, next) => {
         rpg: rpgCount,
         shooter: shCount
     }
-    res.render('shop/shop', { games, pagination, Count, query, messeage });
+    res.render('shop/shop', { games, pagination, Count, query, message });
 };
 
 exports.details = async (req, res, next) => {
