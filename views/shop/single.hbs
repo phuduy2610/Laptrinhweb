@@ -1,14 +1,14 @@
 <!-- Include the Etalage files -->
-					<link rel="stylesheet" href="../stylesheets/etalage.css">
-					<script src="../javascripts/jquery.etalage.min.js"></script>
-				<!-- Include the Etalage files -->
-                    <script src="../javascripts/thumbnail.js"></script>
+<link rel="stylesheet" href="../stylesheets/etalage.css">
+<script src="../javascripts/jquery.etalage.min.js"></script>
+<!-- Include the Etalage files -->
+<script src="../javascripts/thumbnail.js"></script>
 <div class="hover_bkgr_fricc">
     <span class="helper"></span>
     <div>
         <div class="popupCloseButton">&times;</div>
         <div class="check_mark"></div>
-        <h4 class="text-success" >Add to cart successfully !</h4>
+        <h4 class="text-success">Add to cart successfully !</h4>
     </div>
 </div>
 <div class="main">
@@ -18,26 +18,30 @@
                 <div class="col-md-9 single_left">
                     <div class="single_image">
                         <form method="POST">
-                        <img src="{{game.cover}}" class="img-responsive" alt=""/>
-                        {{!-- <ul id="etalage">
-                            <li>
-                                <a href="optionallink.html">
+                            <img src="{{game.cover}}" class="img-responsive" alt="" />
+                            {{!-- <ul id="etalage">
+                                <li>
+                                    <a href="optionallink.html">
+                                        <img class="etalage_thumb_image" src="{{game.cover}}" />
+                                        <img class="etalage_source_image" src="{{game.cover}}" />
+                                    </a>
+                                </li> --}}
+                                {{!-- <li>
                                     <img class="etalage_thumb_image" src="{{game.cover}}" />
                                     <img class="etalage_source_image" src="{{game.cover}}" />
-                                </a>
-                            </li> --}}
-                            {{!-- <li>
-                                <img class="etalage_thumb_image" src="{{game.cover}}" />
-                                <img class="etalage_source_image" src="{{game.cover}}" />
-                            </li> --}}
-                        {{!-- </ul> --}}
+                                </li> --}}
+                                {{!--
+                            </ul> --}}
                     </div>
                     <!-- end product_slider -->
                     <div class="single_right">
-                        <h3 >{{game.title}}</h3>
-                        <p class="m_10">{{game.Description}}</p>
-                        <div class="btn_form">
-                        </div>
+                        <h2>{{game.title}}</h2>
+                        <ul class="list-group" style="padding-top:5%">
+                            <li class="list-group-item">Game mode available: {{game.mode}}</li>
+                            <li class="list-group-item">System requirements: {{game.system}}</li>
+                            <li class="list-group-item">Genre: {{game.genre}}</li>
+
+                        </ul>
                     </div>
                     <div class="clear"> </div>
                 </div>
@@ -47,11 +51,11 @@
                         <ul class="prosuct-qty">
                             <span>Quantity:</span>
                             <select name="quantity" id="quantity">
-                                <option value ="1">1</option>
-                                <option value ="2">2</option>
-                                <option value ="3">3</option>
-                                <option value ="4">4</option>
-                                <option value ="5">5</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </ul>
                         <button type="submit" name="Submit" class="exclusive trigger_popup_fricc">
@@ -61,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="desc">
+            <div class="desc pt-5" >
                 <h4>Description</h4>
                 <p>{{game.Description}}</p>
             </div>
@@ -74,7 +78,7 @@
                         </a>
                         <h3><a href="single.html"></a><a href="{{this._id}}">{{title}}</a></h3>
                         {{!-- <span class="reducedfrom">{{basePrice}}</span> --}}
-                        <span class="actual">{{basePrice}}</span><br>
+                        <span class="actual">{{basePrice}}$</span><br>
                         <ul class="buttons">
                             <li class="shop_btn"><a href="{{this._id}}">Read More</a></li>
                             <div class="clear"> </div>
