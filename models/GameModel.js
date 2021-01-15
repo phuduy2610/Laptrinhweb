@@ -165,12 +165,12 @@ exports.getByFilter = async(params,page_number, item_per_page ) => {
             params.spec = [parseInt(params.spec)];
         }
     }
-    if(params.min == "") {
+    if(params.min == "" || params.min == null) {
         params.min = 0;
     } else {
         params.min = parseInt(params.min);
     }
-    if(params.max == "") {
+    if(params.max == "" || params.max == null) {
         params.max = 100;
     } else {
         params.max = parseInt(params.max);
