@@ -1,4 +1,4 @@
-const GameModel = require('../models/gameModel');
+const GameModel = require('../models/GameModel');
 const CartModel = require('../models/CartModel');
 let Cart = require('../models/localCartModel');
 const GenreModel = require('../models/GenreModel');

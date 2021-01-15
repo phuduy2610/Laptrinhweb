@@ -1,4 +1,4 @@
-const GameModel = require('../models/gameModel');
+const GameModel = require('../models/GameModel');
 
 exports.index = async (req, res, next) => {
     const limit = 8;
