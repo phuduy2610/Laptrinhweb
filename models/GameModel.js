@@ -23,7 +23,7 @@ exports.getonebytitle = async (gametitle) => {
 //Tìm game bằng id
 exports.getonebyid = async (gameid) => {
     const gamecollection = db().collection('Our games');
-    const game = await gamecollection.findOne({id: gameid});
+    const game = await gamecollection.findOne({_id: ObjectId(gameid)});
     return game;
 }
 
@@ -120,3 +120,146 @@ exports.getGameCountGetsamename = async(gametitle)=>{
     return games.length;
 }
 
+// lấy ra array id genre bằng một array tên genre
+exports.getGenreIdByName = async(name) => {
+    const genreCollection = db().collection('Genres');
+    const Genre = await genreCollection.findOne({name: {$regex : name, $options: 'i'}});
+    return Genre._id;
+}
+
+// lấy ra toàn bộ genre theo id 
+exports.getAllGenreId = async() => {
+    const genreCollection = db().collection('Genres');
+    const Genre = await genreCollection.find({}).toArray();
+    for(var i = 0; i < Genre.length; i++) {
+        Genre[i] = Genre[i]._id;
+    }
+    return Genre;
+}
+
+//Lấy game theo filter
+exports.getByFilter = async(params,page_number, item_per_page ) => {
+    const gamecollection = db().collection('Our games');
+    //
+    if(params.genre != null) {
+        if(!Array.isArray(params.genre)) {
+            params.genre = [params.genre];
+        }
+        for (var i = 0; i < params.genre.length; i++) {
+            params.genre[i] = await this.getGenreIdByName(params.genre[i]);
+        }
+    } else {
+        params.genre = await this.getAllGenreId();
+    }
+    //
+    let single = [true,false];
+    let multi = [true,false];
+    if(typeof params.spec == "undefined") {
+        params.spec = [1,2,3,4];
+    } else {
+        if(Array.isArray(params.spec)) {
+            for (var i in params.spec) {
+                params.spec[i] = parseInt(params.spec[i]);
+            }
+        } else {
+            params.spec = [parseInt(params.spec)];
+        }
+    }
+    if(params.min == "") {
+        params.min = 0;
+    } else {
+        params.min = parseInt(params.min);
+    }
+    if(params.max == "") {
+        params.max = 100;
+    } else {
+        params.max = parseInt(params.max);
+    }
+    if(params.single == "true" && typeof params.multi == "undefined") {
+        single = [true];
+    }
+    if(params.multi == "true" && typeof params.single == "undefined") {
+        multi = [true];
+    }
+    if( params.single == "true" ** params.multi == "true") {
+        single = [true];
+        multi = [true];
+    }
+    // console.log(params.multi);
+    // console.log(params.single);
+    // console.log(params.spec);
+    // console.log(params.min);
+    // console.log(params.max);
+    // console.log(single);
+    // console.log(multi);
+    const games = await gamecollection.find({
+        $and: [
+            { req: { $in: params.spec } },
+            { category: { $in: params.genre }},
+            { basePrice: {$gte:params.min,$lte:params.max} },
+            { single: { $in: single } },
+            { multi: { $in: multi } }
+        ]
+    }).skip((page_number - 1)*item_per_page).limit(item_per_page).toArray();
+    return games;
+}
+
+//Lấy game theo filter
+exports.getGameCountByFilter = async(params) => {
+    const gamecollection = db().collection('Our games');
+    //
+    if(params.genre != null) {
+        if(!Array.isArray(params.genre)) {
+            params.genre = [params.genre];
+        }
+        for (var i = 0; i < params.genre.length; i++) {
+            params.genre[i] = await this.getGenreIdByName(params.genre[i]);
+        }
+    } else {
+        params.genre = await this.getAllGenreId();
+    }
+    //
+    let single = [true,false];
+    let multi = [true,false];
+    if(typeof params.spec == "undefined") {
+        params.spec = [1,2,3,4];
+    } else {
+        if(Array.isArray(params.spec)) {
+            for (var i in params.spec) {
+                params.spec[i] = parseInt(params.spec[i]);
+            }
+        } else {
+            params.spec = [parseInt(params.spec)];
+        }
+    }
+    if(params.min == "") {
+        params.min = 0;
+    } else {
+        params.min = parseInt(params.min);
+    }
+    if(params.max == "") {
+        params.max = 100;
+    } else {
+        params.max = parseInt(params.max);
+    }
+    if(params.single == "true" && typeof params.multi == "undefined") {
+        single = [true];
+    }
+    if(params.multi == "true" && typeof params.single == "undefined") {
+        multi = [true];
+    }
+    if( params.single == "true" ** params.multi == "true") {
+        single = [true];
+        multi = [true];
+    }
+    const count = await gamecollection.countDocuments({
+        $and: [
+            { req: { $in: params.spec } },
+            { category: { $in: params.genre }},
+            { basePrice: {$gte:params.min,$lte:params.max} },
+            { single: { $in: single } },
+            { multi: { $in: multi } }
+        ]
+    });
+    return count;
+}

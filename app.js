@@ -34,6 +34,9 @@ const app = express();
 
 
 //custom handle bars 
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 hbs.registerHelper( "when",function(operand_1, operator, operand_2, options) {
   var operators = {
    '==': function(l,r) { return l == r; },
