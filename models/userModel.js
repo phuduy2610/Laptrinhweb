@@ -88,7 +88,7 @@ exports.getuserCount = async()=>{
 
 //Kiểm tra thông tin user hợp lệ để đăng nhập
 exports.checkCredential = async(username,password) => {
-    const user = await db().collection('Users').findOne({email: username,status : true});
+    const user = await db().collection('Users').findOne({email: username,status : true,blocked: false});
     let bpassword = null;
     if(user)
     {
@@ -117,7 +117,8 @@ exports.addNewUser = async(user) => {
     username: user.username,
     email: user.email,
     password: hash,
-    status: user.status
+    status: user.status,
+    blocked: user.blocked
   } 
   const result = await userCollection.insertOne(newUser);
   console.log(`New listing created with the following id: ${result.insertedId}`);

@@ -13,7 +13,8 @@ exports.addUser = async (req, res, next) => {
         username: req.body.username,
         password: req.body.password,
         cover: null,
-        status: false
+        status: false,
+        blocked: false
     }
     user = await userModel.addNewUser(user);
     if (user) {
