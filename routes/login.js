@@ -21,6 +21,7 @@ router.post('/', function (req, res, next) {
         }
         if(req.session.redirect != null) {
           res.send({redirect : req.session.redirect});
+          req.session.redirect = null;
         }
         else
         {
